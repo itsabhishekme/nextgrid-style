@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +35,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+=======
+# NextGrid-Style
+NextGrid Style is a modern fashion and lifestyle web application built with cutting-edge technologies to deliver a premium shopping experience. Designed with a sleek UI, smooth animations, and responsive layouts, the platform combines style, performance, and scalability into one elegant digital storefront.
+>>>>>>> 04930dfda8d9c978aac0932202b9a56e88861d3a
