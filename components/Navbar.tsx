@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import {
   ShoppingBag,
   Search,
@@ -9,90 +10,145 @@ import {
   X,
   User,
   ChevronDown,
+  Sparkles,
+  Bell,
+  ArrowRight,
 } from "lucide-react";
 
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+} from "framer-motion";
+
 import { useState } from "react";
 
-const navLinks = [
+const navItems = [
   {
     name: "Men",
     href: "/men",
   },
+
   {
     name: "Women",
     href: "/women",
   },
+
   {
     name: "Children",
     href: "/children",
   },
+
   {
     name: "New Arrivals",
     href: "/new-arrivals",
+    badge: true,
   },
+
   {
-    name: "Sale",
-    href: "/sale",
+    name: "Luxury",
+    href: "/luxury",
+    dropdown: true,
+  },
+
+  {
+    name: "Streetwear",
+    href: "/streetwear",
+  },
+];
+
+const luxuryDropdown = [
+  {
+    title: "Premium Jackets",
+    href: "/luxury/jackets",
+  },
+
+  {
+    title: "Designer Shoes",
+    href: "/luxury/shoes",
+  },
+
+  {
+    title: "Luxury Watches",
+    href: "/luxury/watches",
+  },
+
+  {
+    title: "Accessories",
+    href: "/luxury/accessories",
   },
 ];
 
 export default function Navbar() {
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const [mobileMenu, setMobileMenu] =
+    useState(false);
+
+  const [searchOpen, setSearchOpen] =
+    useState(false);
+
+  const [luxuryOpen, setLuxuryOpen] =
+    useState(false);
 
   return (
     <>
+      {/* NAVBAR */}
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{
+          y: -100,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
         transition={{
-          duration: 0.7,
-          ease: "easeOut",
+          duration: 0.8,
         }}
         className="
           fixed
           top-0
           left-0
-          w-full
           z-50
-          backdrop-blur-2xl
-          bg-black/40
+          w-full
           border-b
           border-white/10
+          bg-black/40
+          backdrop-blur-3xl
         "
       >
         <nav
           className="
-            max-w-7xl
             mx-auto
-            px-6
-            lg:px-10
-            h-[90px]
             flex
+            h-[90px]
+            max-w-7xl
             items-center
             justify-between
+            px-6
+            lg:px-10
           "
         >
           {/* LEFT */}
-          <div className="flex items-center gap-12">
+          <div className="flex items-center gap-14">
             {/* LOGO */}
             <Link href="/">
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{
+                  scale: 1.03,
+                }}
                 className="cursor-pointer"
               >
                 <h1
                   className="
-                    text-3xl
-                    font-black
-                    tracking-[0.3em]
-                    uppercase
                     bg-gradient-to-r
                     from-white
                     via-zinc-300
                     to-zinc-500
-                    text-transparent
                     bg-clip-text
+                    text-3xl
+                    font-black
+                    uppercase
+                    tracking-[0.3em]
+                    text-transparent
                   "
                 >
                   NextGrid
@@ -100,11 +156,11 @@ export default function Navbar() {
 
                 <p
                   className="
+                    mt-1
                     text-[10px]
+                    uppercase
                     tracking-[0.5em]
                     text-zinc-500
-                    uppercase
-                    mt-1
                   "
                 >
                   Fashion Studio
@@ -112,53 +168,174 @@ export default function Navbar() {
               </motion.div>
             </Link>
 
-            {/* DESKTOP LINKS */}
-            <div className="hidden lg:flex items-center gap-8">
-              {navLinks.map((item, index) => (
+            {/* DESKTOP MENU */}
+            <div className="hidden items-center gap-8 lg:flex">
+              {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{
+                    opacity: 0,
+                    y: -10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
                   transition={{
-                    delay: index * 0.1,
+                    delay: index * 0.08,
+                  }}
+                  className="relative group"
+                  onMouseEnter={() => {
+                    if (item.dropdown)
+                      setLuxuryOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    if (item.dropdown)
+                      setLuxuryOpen(false);
                   }}
                 >
                   <Link
                     href={item.href}
                     className="
                       relative
+                      flex
+                      items-center
+                      gap-2
                       text-sm
                       uppercase
-                      tracking-widest
+                      tracking-[0.2em]
                       text-zinc-300
-                      hover:text-white
                       transition-all
-                      duration-300
-                      group
+                      hover:text-white
                     "
                   >
-                    <span className="flex items-center gap-1">
-                      {item.name}
+                    {item.name}
 
-                      {item.name === "Sale" && (
-                        <ChevronDown size={14} />
-                      )}
-                    </span>
+                    {item.badge && (
+                      <span
+                        className="
+                          rounded-full
+                          bg-white
+                          px-2
+                          py-1
+                          text-[9px]
+                          font-bold
+                          uppercase
+                          tracking-[0.15em]
+                          text-black
+                        "
+                      >
+                        New
+                      </span>
+                    )}
 
-                    <span
-                      className="
-                        absolute
-                        left-0
-                        -bottom-2
-                        w-0
-                        h-[1px]
-                        bg-white
-                        transition-all
-                        duration-300
-                        group-hover:w-full
-                      "
-                    />
+                    {item.dropdown && (
+                      <ChevronDown size={14} />
+                    )}
                   </Link>
+
+                  {/* UNDERLINE */}
+                  <span
+                    className="
+                      absolute
+                      -bottom-2
+                      left-0
+                      h-[1px]
+                      w-0
+                      bg-white
+                      transition-all
+                      duration-300
+                      group-hover:w-full
+                    "
+                  />
+
+                  {/* DROPDOWN */}
+                  <AnimatePresence>
+                    {item.dropdown &&
+                      luxuryOpen && (
+                        <motion.div
+                          initial={{
+                            opacity: 0,
+                            y: 20,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            y: 20,
+                          }}
+                          transition={{
+                            duration: 0.25,
+                          }}
+                          className="
+                            absolute
+                            left-0
+                            top-12
+                            w-[320px]
+                            overflow-hidden
+                            rounded-[30px]
+                            border
+                            border-white/10
+                            bg-black/90
+                            p-6
+                            backdrop-blur-3xl
+                          "
+                        >
+                          <div className="mb-5">
+                            <p
+                              className="
+                                text-xs
+                                uppercase
+                                tracking-[0.3em]
+                                text-zinc-500
+                              "
+                            >
+                              Premium Collection
+                            </p>
+
+                            <h3 className="mt-3 text-2xl font-black">
+                              Luxury Fashion
+                            </h3>
+                          </div>
+
+                          <div className="space-y-4">
+                            {luxuryDropdown.map(
+                              (drop) => (
+                                <Link
+                                  key={drop.title}
+                                  href={drop.href}
+                                  className="
+                                    group
+                                    flex
+                                    items-center
+                                    justify-between
+                                    rounded-2xl
+                                    border
+                                    border-white/5
+                                    bg-white/[0.03]
+                                    px-5
+                                    py-4
+                                    transition-all
+                                    hover:bg-white
+                                    hover:text-black
+                                  "
+                                >
+                                  <span>
+                                    {drop.title}
+                                  </span>
+
+                                  <ArrowRight
+                                    size={16}
+                                  />
+                                </Link>
+                              )
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                  </AnimatePresence>
                 </motion.div>
               ))}
             </div>
@@ -174,22 +351,69 @@ export default function Navbar() {
               whileTap={{
                 scale: 0.95,
               }}
+              onClick={() =>
+                setSearchOpen(true)
+              }
               className="
                 hidden
                 md:flex
+                h-11
+                w-11
                 items-center
                 justify-center
-                w-11
-                h-11
                 rounded-full
                 border
                 border-white/10
                 bg-white/5
-                hover:bg-white/10
                 transition-all
+                hover:bg-white/10
               "
             >
               <Search size={18} />
+            </motion.button>
+
+            {/* NOTIFICATIONS */}
+            <motion.button
+              whileHover={{
+                scale: 1.08,
+              }}
+              whileTap={{
+                scale: 0.95,
+              }}
+              className="
+                relative
+                hidden
+                md:flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-white/10
+                bg-white/5
+              "
+            >
+              <Bell size={18} />
+
+              <span
+                className="
+                  absolute
+                  -right-1
+                  -top-1
+                  flex
+                  h-5
+                  w-5
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-red-500
+                  text-[10px]
+                  font-bold
+                "
+              >
+                3
+              </span>
             </motion.button>
 
             {/* WISHLIST */}
@@ -201,19 +425,17 @@ export default function Navbar() {
                 scale: 0.95,
               }}
               className="
+                relative
                 hidden
                 md:flex
+                h-11
+                w-11
                 items-center
                 justify-center
-                w-11
-                h-11
                 rounded-full
                 border
                 border-white/10
                 bg-white/5
-                hover:bg-white/10
-                transition-all
-                relative
               "
             >
               <Heart size={18} />
@@ -221,25 +443,25 @@ export default function Navbar() {
               <span
                 className="
                   absolute
-                  -top-1
                   -right-1
-                  w-5
-                  h-5
-                  rounded-full
-                  bg-white
-                  text-black
-                  text-[10px]
+                  -top-1
                   flex
+                  h-5
+                  w-5
                   items-center
                   justify-center
+                  rounded-full
+                  bg-white
+                  text-[10px]
                   font-bold
+                  text-black
                 "
               >
                 2
               </span>
             </motion.button>
 
-            {/* ACCOUNT */}
+            {/* PROFILE */}
             <motion.button
               whileHover={{
                 scale: 1.08,
@@ -250,16 +472,14 @@ export default function Navbar() {
               className="
                 hidden
                 md:flex
+                h-11
+                w-11
                 items-center
                 justify-center
-                w-11
-                h-11
                 rounded-full
                 border
                 border-white/10
                 bg-white/5
-                hover:bg-white/10
-                transition-all
               "
             >
               <User size={18} />
@@ -276,10 +496,10 @@ export default function Navbar() {
               className="
                 relative
                 flex
+                h-12
+                w-12
                 items-center
                 justify-center
-                w-12
-                h-12
                 rounded-full
                 bg-white
                 text-black
@@ -291,41 +511,43 @@ export default function Navbar() {
               <span
                 className="
                   absolute
-                  -top-1
                   -right-1
-                  w-5
-                  h-5
-                  rounded-full
-                  bg-red-500
-                  text-white
-                  text-[10px]
+                  -top-1
                   flex
+                  h-5
+                  w-5
                   items-center
                   justify-center
+                  rounded-full
+                  bg-red-500
+                  text-[10px]
                   font-bold
+                  text-white
                 "
               >
-                3
+                5
               </span>
             </motion.button>
 
-            {/* MOBILE MENU BUTTON */}
+            {/* MOBILE MENU */}
             <motion.button
               whileTap={{
                 scale: 0.9,
               }}
-              onClick={() => setMobileMenu(!mobileMenu)}
+              onClick={() =>
+                setMobileMenu(!mobileMenu)
+              }
               className="
-                lg:hidden
                 flex
+                h-11
+                w-11
                 items-center
                 justify-center
-                w-11
-                h-11
                 rounded-full
                 border
                 border-white/10
                 bg-white/5
+                lg:hidden
               "
             >
               {mobileMenu ? (
@@ -338,45 +560,234 @@ export default function Navbar() {
         </nav>
       </motion.header>
 
+      {/* SEARCH OVERLAY */}
+      <AnimatePresence>
+        {searchOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+            className="
+              fixed
+              inset-0
+              z-[60]
+              bg-black/95
+              backdrop-blur-3xl
+            "
+          >
+            <div
+              className="
+                mx-auto
+                flex
+                h-full
+                max-w-4xl
+                flex-col
+                px-6
+                pt-40
+              "
+            >
+              {/* TOP */}
+              <div className="flex items-center justify-between">
+                <h2 className="text-5xl font-black">
+                  Search Fashion
+                </h2>
+
+                <button
+                  onClick={() =>
+                    setSearchOpen(false)
+                  }
+                  className="
+                    flex
+                    h-14
+                    w-14
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-white/10
+                    bg-white/5
+                  "
+                >
+                  <X />
+                </button>
+              </div>
+
+              {/* SEARCH BOX */}
+              <div className="mt-12">
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-4
+                    rounded-[30px]
+                    border
+                    border-white/10
+                    bg-white/[0.04]
+                    px-6
+                    py-5
+                  "
+                >
+                  <Search size={22} />
+
+                  <input
+                    type="text"
+                    placeholder="Search premium fashion..."
+                    className="
+                      w-full
+                      bg-transparent
+                      text-xl
+                      outline-none
+                      placeholder:text-zinc-500
+                    "
+                  />
+                </div>
+              </div>
+
+              {/* TRENDING */}
+              <div className="mt-14">
+                <p
+                  className="
+                    mb-6
+                    text-sm
+                    uppercase
+                    tracking-[0.3em]
+                    text-zinc-500
+                  "
+                >
+                  Trending Searches
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  {[
+                    "Luxury Jackets",
+                    "Streetwear",
+                    "Sneakers",
+                    "Summer Collection",
+                    "New Arrivals",
+                  ].map((item) => (
+                    <button
+                      key={item}
+                      className="
+                        rounded-full
+                        border
+                        border-white/10
+                        bg-white/[0.03]
+                        px-6
+                        py-3
+                        text-sm
+                        uppercase
+                        tracking-[0.2em]
+                        transition-all
+                        hover:bg-white
+                        hover:text-black
+                      "
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* MOBILE MENU */}
       <AnimatePresence>
         {mobileMenu && (
           <motion.div
             initial={{
               opacity: 0,
-              y: -20,
+              x: "100%",
             }}
             animate={{
               opacity: 1,
-              y: 0,
+              x: 0,
             }}
             exit={{
               opacity: 0,
-              y: -20,
+              x: "100%",
             }}
             transition={{
-              duration: 0.3,
+              duration: 0.35,
             }}
             className="
               fixed
-              top-[90px]
-              left-0
-              w-full
-              z-40
-              bg-black/95
-              backdrop-blur-2xl
-              border-b
+              right-0
+              top-0
+              z-[55]
+              h-screen
+              w-[85%]
+              border-l
               border-white/10
+              bg-black/95
+              backdrop-blur-3xl
               lg:hidden
             "
           >
-            <div className="px-6 py-8 flex flex-col gap-6">
-              {navLinks.map((item, index) => (
+            {/* TOP */}
+            <div
+              className="
+                flex
+                items-center
+                justify-between
+                border-b
+                border-white/10
+                px-6
+                py-6
+              "
+            >
+              <div>
+                <h2 className="text-2xl font-black">
+                  NextGrid
+                </h2>
+
+                <p
+                  className="
+                    text-xs
+                    uppercase
+                    tracking-[0.3em]
+                    text-zinc-500
+                  "
+                >
+                  Fashion Studio
+                </p>
+              </div>
+
+              <button
+                onClick={() =>
+                  setMobileMenu(false)
+                }
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/5
+                "
+              >
+                <X />
+              </button>
+            </div>
+
+            {/* LINKS */}
+            <div className="flex flex-col gap-6 px-6 py-10">
+              {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
                   initial={{
                     opacity: 0,
-                    x: -30,
+                    x: 40,
                   }}
                   animate={{
                     opacity: 1,
@@ -388,65 +799,72 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    onClick={() => setMobileMenu(false)}
+                    onClick={() =>
+                      setMobileMenu(false)
+                    }
                     className="
+                      flex
+                      items-center
+                      justify-between
+                      border-b
+                      border-white/5
+                      pb-5
                       text-xl
                       uppercase
                       tracking-[0.2em]
                       text-zinc-300
-                      hover:text-white
                       transition-all
-                      duration-300
-                      block
+                      hover:text-white
                     "
                   >
-                    {item.name}
+                    <div className="flex items-center gap-3">
+                      <span>{item.name}</span>
+
+                      {item.badge && (
+                        <span
+                          className="
+                            rounded-full
+                            bg-white
+                            px-2
+                            py-1
+                            text-[9px]
+                            font-bold
+                            uppercase
+                            tracking-[0.15em]
+                            text-black
+                          "
+                        >
+                          New
+                        </span>
+                      )}
+                    </div>
+
+                    <ArrowRight size={18} />
                   </Link>
                 </motion.div>
               ))}
 
-              {/* MOBILE EXTRA */}
-              <div
+              {/* CTA */}
+              <button
                 className="
-                  mt-6
-                  pt-6
-                  border-t
-                  border-white/10
+                  mt-8
                   flex
                   items-center
-                  gap-4
+                  justify-center
+                  gap-3
+                  rounded-full
+                  bg-white
+                  px-6
+                  py-5
+                  font-bold
+                  uppercase
+                  tracking-[0.2em]
+                  text-black
                 "
               >
-                <button
-                  className="
-                    flex-1
-                    h-12
-                    rounded-full
-                    border
-                    border-white/10
-                    bg-white/5
-                    hover:bg-white/10
-                    transition-all
-                  "
-                >
-                  Login
-                </button>
-
-                <button
-                  className="
-                    flex-1
-                    h-12
-                    rounded-full
-                    bg-white
-                    text-black
-                    font-semibold
-                    hover:scale-[1.02]
-                    transition-all
-                  "
-                >
-                  Shop Now
-                </button>
-              </div>
+                <Sparkles size={18} />
+                Explore Collection
+              </button>
             </div>
           </motion.div>
         )}
