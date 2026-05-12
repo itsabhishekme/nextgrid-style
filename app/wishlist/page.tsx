@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 
-import {
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 import {
   Heart,
@@ -14,13 +12,14 @@ import {
   Sparkles,
   ArrowRight,
   Eye,
+  ShieldCheck,
 } from "lucide-react";
 
 const wishlistProducts = [
   {
     id: 1,
     name: "Luxury Black Hoodie",
-    price: "$189",
+    price: 14999,
     image: "/streetwear/hoodie.jpg",
     tag: "Trending",
     rating: "4.9",
@@ -29,7 +28,7 @@ const wishlistProducts = [
   {
     id: 2,
     name: "Premium Sneakers",
-    price: "$320",
+    price: 22999,
     image: "/streetwear/shoes.jpg",
     tag: "Luxury",
     rating: "5.0",
@@ -38,7 +37,7 @@ const wishlistProducts = [
   {
     id: 3,
     name: "Urban Cargo Pants",
-    price: "$160",
+    price: 11999,
     image: "/streetwear/cargo.jpg",
     tag: "New",
     rating: "4.8",
@@ -47,7 +46,7 @@ const wishlistProducts = [
   {
     id: 4,
     name: "Designer Jacket",
-    price: "$420",
+    price: 31999,
     image: "/streetwear/jacket.jpg",
     tag: "Exclusive",
     rating: "4.9",
@@ -56,7 +55,15 @@ const wishlistProducts = [
 
 export default function WishlistPage() {
   return (
-    <main className="relative overflow-hidden bg-black text-white">
+    <main
+      className="
+        relative
+        min-h-screen
+        overflow-hidden
+        bg-[#050505]
+        text-white
+      "
+    >
       {/* BACKGROUND */}
       <div className="absolute inset-0 overflow-hidden">
         {/* GRID */}
@@ -65,15 +72,36 @@ export default function WishlistPage() {
           style={{
             backgroundImage:
               "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-
             backgroundSize: "80px 80px",
           }}
         />
 
-        {/* GLOW */}
-        <div className="absolute left-0 top-0 h-[700px] w-[700px] rounded-full bg-pink-500/10 blur-[180px]" />
+        {/* GLOW EFFECTS */}
+        <div
+          className="
+            absolute
+            left-[-200px]
+            top-[-100px]
+            h-[600px]
+            w-[600px]
+            rounded-full
+            bg-fuchsia-500/20
+            blur-[180px]
+          "
+        />
 
-        <div className="absolute right-0 top-0 h-[700px] w-[700px] rounded-full bg-purple-500/10 blur-[180px]" />
+        <div
+          className="
+            absolute
+            bottom-[-200px]
+            right-[-150px]
+            h-[600px]
+            w-[600px]
+            rounded-full
+            bg-cyan-500/20
+            blur-[180px]
+          "
+        />
       </div>
 
       {/* HERO */}
@@ -83,7 +111,7 @@ export default function WishlistPage() {
           mx-auto
           max-w-7xl
           px-6
-          pb-20
+          pb-24
           pt-[150px]
           lg:px-10
         "
@@ -105,22 +133,26 @@ export default function WishlistPage() {
             rounded-full
             border
             border-white/10
-            bg-white/[0.03]
+            bg-white/[0.04]
             px-6
             py-3
+            backdrop-blur-xl
           "
         >
-          <Heart size={16} />
+          <Sparkles
+            size={16}
+            className="text-fuchsia-400"
+          />
 
           <span
             className="
               text-xs
               uppercase
-              tracking-[0.3em]
-              text-zinc-400
+              tracking-[0.35em]
+              text-zinc-300
             "
           >
-            Saved Luxury Collection
+            Premium Wishlist Collection
           </span>
         </motion.div>
 
@@ -128,7 +160,7 @@ export default function WishlistPage() {
         <motion.h1
           initial={{
             opacity: 0,
-            y: 50,
+            y: 40,
           }}
           animate={{
             opacity: 1,
@@ -141,7 +173,7 @@ export default function WishlistPage() {
             mt-10
             text-6xl
             font-black
-            leading-[0.95]
+            leading-[0.9]
             md:text-8xl
           "
         >
@@ -165,7 +197,7 @@ export default function WishlistPage() {
         <motion.p
           initial={{
             opacity: 0,
-            y: 30,
+            y: 20,
           }}
           animate={{
             opacity: 1,
@@ -182,14 +214,14 @@ export default function WishlistPage() {
             text-zinc-400
           "
         >
-          Save your favorite premium fashion,
-          futuristic streetwear and luxury products
-          to revisit and shop later.
+          Save luxury streetwear, premium fashion,
+          futuristic outfits and exclusive collections
+          for your next iconic look.
         </motion.p>
       </section>
 
       {/* PRODUCTS */}
-      <section className="relative mx-auto max-w-7xl px-6 pb-28 lg:px-10">
+      <section className="relative mx-auto max-w-7xl px-6 pb-32 lg:px-10">
         {/* HEADER */}
         <div className="mb-14 flex items-end justify-between">
           <div>
@@ -204,8 +236,14 @@ export default function WishlistPage() {
               Saved Products
             </p>
 
-            <h2 className="mt-5 text-5xl font-black">
-              Premium Collection
+            <h2
+              className="
+                mt-5
+                text-5xl
+                font-black
+              "
+            >
+              Luxury Collection
             </h2>
           </div>
 
@@ -217,12 +255,14 @@ export default function WishlistPage() {
               rounded-full
               border
               border-white/10
-              bg-white/[0.03]
+              bg-white/[0.04]
               px-6
               py-4
               text-sm
               uppercase
               tracking-[0.2em]
+              transition
+              hover:bg-white/10
               md:flex
             "
           >
@@ -232,14 +272,14 @@ export default function WishlistPage() {
           </button>
         </div>
 
-        {/* GRID */}
+        {/* PRODUCT GRID */}
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
           {wishlistProducts.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{
                 opacity: 0,
-                y: 30,
+                y: 40,
               }}
               whileInView={{
                 opacity: 1,
@@ -252,16 +292,35 @@ export default function WishlistPage() {
                 once: true,
               }}
               whileHover={{
-                y: -8,
+                y: -10,
               }}
               className="
+                group
+                relative
                 overflow-hidden
-                rounded-[40px]
+                rounded-[38px]
                 border
                 border-white/10
-                bg-white/[0.03]
+                bg-white/[0.04]
+                backdrop-blur-xl
               "
             >
+              {/* HOVER GRADIENT */}
+              <div
+                className="
+                  absolute
+                  inset-0
+                  opacity-0
+                  transition
+                  duration-500
+                  group-hover:opacity-100
+                  bg-gradient-to-b
+                  from-fuchsia-500/10
+                  via-transparent
+                  to-cyan-500/10
+                "
+              />
+
               {/* IMAGE */}
               <div className="relative overflow-hidden">
                 <Image
@@ -275,12 +334,27 @@ export default function WishlistPage() {
                     object-cover
                     transition-all
                     duration-700
-                    hover:scale-110
+                    group-hover:scale-110
                   "
                 />
 
                 {/* TAG */}
-                <div className="absolute left-4 top-4 rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-black">
+                <div
+                  className="
+                    absolute
+                    left-4
+                    top-4
+                    rounded-full
+                    bg-white
+                    px-4
+                    py-2
+                    text-xs
+                    font-black
+                    uppercase
+                    tracking-[0.2em]
+                    text-black
+                  "
+                >
                   {product.tag}
                 </div>
 
@@ -298,14 +372,52 @@ export default function WishlistPage() {
                     rounded-full
                     bg-black/50
                     backdrop-blur-xl
+                    transition
+                    hover:bg-red-500
                   "
                 >
                   <Trash2 size={18} />
                 </button>
+
+                {/* QUICK VIEW */}
+                <div
+                  className="
+                    absolute
+                    inset-x-0
+                    bottom-4
+                    flex
+                    justify-center
+                    opacity-0
+                    transition
+                    duration-500
+                    group-hover:opacity-100
+                  "
+                >
+                  <button
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      rounded-full
+                      bg-white
+                      px-6
+                      py-3
+                      text-sm
+                      font-bold
+                      uppercase
+                      tracking-[0.2em]
+                      text-black
+                    "
+                  >
+                    <Eye size={16} />
+
+                    Quick View
+                  </button>
+                </div>
               </div>
 
               {/* CONTENT */}
-              <div className="p-6">
+              <div className="relative p-6">
                 {/* RATING */}
                 <div className="flex items-center gap-2">
                   <Star
@@ -322,34 +434,69 @@ export default function WishlistPage() {
                 </div>
 
                 {/* TITLE */}
-                <h3 className="mt-4 text-3xl font-black">
+                <h3
+                  className="
+                    mt-4
+                    text-3xl
+                    font-black
+                    leading-tight
+                  "
+                >
                   {product.name}
                 </h3>
 
                 {/* PRICE */}
-                <div className="mt-5 flex items-center justify-between">
-                  <p className="text-2xl font-black">
-                    {product.price}
-                  </p>
+                <div className="mt-6 flex items-center justify-between">
+                  <div>
+                    <p
+                      className="
+                        text-3xl
+                        font-black
+                      "
+                    >
+                      ₹
+                      {product.price.toLocaleString(
+                        "en-IN"
+                      )}
+                    </p>
+
+                    <div className="mt-2 flex items-center gap-2">
+                      <ShieldCheck
+                        size={14}
+                        className="text-emerald-400"
+                      />
+
+                      <span
+                        className="
+                          text-xs
+                          text-zinc-400
+                        "
+                      >
+                        Premium Quality
+                      </span>
+                    </div>
+                  </div>
 
                   <button
                     className="
                       flex
-                      h-12
-                      w-12
+                      h-14
+                      w-14
                       items-center
                       justify-center
                       rounded-full
                       bg-white
                       text-black
+                      transition
+                      hover:scale-110
                     "
                   >
-                    <ShoppingBag size={18} />
+                    <ShoppingBag size={20} />
                   </button>
                 </div>
 
                 {/* ACTIONS */}
-                <div className="mt-6 flex gap-4">
+                <div className="mt-7 flex gap-4">
                   <button
                     className="
                       flex
@@ -360,12 +507,14 @@ export default function WishlistPage() {
                       rounded-full
                       border
                       border-white/10
-                      bg-white/[0.03]
+                      bg-white/[0.04]
                       px-4
                       py-4
                       text-sm
                       uppercase
                       tracking-[0.2em]
+                      transition
+                      hover:bg-white/10
                     "
                   >
                     <Eye size={16} />
@@ -381,14 +530,16 @@ export default function WishlistPage() {
                       justify-center
                       gap-2
                       rounded-full
-                      bg-white
+                      bg-gradient-to-r
+                      from-fuchsia-500
+                      to-cyan-500
                       px-4
                       py-4
                       text-sm
-                      font-bold
+                      font-black
                       uppercase
                       tracking-[0.2em]
-                      text-black
+                      text-white
                     "
                   >
                     <Heart size={16} />
@@ -402,7 +553,7 @@ export default function WishlistPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA SECTION */}
       <section className="relative border-t border-white/10 py-28">
         <div className="mx-auto max-w-5xl px-6 text-center">
           {/* ICON */}
@@ -415,8 +566,12 @@ export default function WishlistPage() {
                 items-center
                 justify-center
                 rounded-full
-                bg-white
-                text-black
+                bg-gradient-to-r
+                from-fuchsia-500
+                to-cyan-500
+                text-white
+                shadow-2xl
+                shadow-fuchsia-500/30
               "
             >
               <Sparkles size={36} />
@@ -435,7 +590,7 @@ export default function WishlistPage() {
             Discover More
           </h2>
 
-          {/* DESC */}
+          {/* DESCRIPTION */}
           <p
             className="
               mx-auto
@@ -446,14 +601,15 @@ export default function WishlistPage() {
               text-zinc-400
             "
           >
-            Explore futuristic streetwear, luxury
-            collections and premium fashion crafted
-            for the next generation lifestyle.
+            Explore futuristic luxury collections,
+            premium streetwear and elite fashion
+            crafted for the modern generation.
           </p>
 
           {/* BUTTON */}
           <button
             className="
+              group
               mt-12
               inline-flex
               items-center
@@ -462,15 +618,23 @@ export default function WishlistPage() {
               bg-white
               px-8
               py-5
-              font-bold
+              font-black
               uppercase
               tracking-[0.2em]
               text-black
+              transition
+              hover:scale-105
             "
           >
             Continue Shopping
 
-            <ArrowRight size={18} />
+            <ArrowRight
+              size={18}
+              className="
+                transition
+                group-hover:translate-x-1
+              "
+            />
           </button>
         </div>
       </section>

@@ -234,7 +234,6 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* UNDERLINE */}
                   <span
                     className="
                       absolute
@@ -249,7 +248,6 @@ export default function Navbar() {
                     "
                   />
 
-                  {/* DROPDOWN */}
                   <AnimatePresence>
                     {item.dropdown &&
                       luxuryOpen && (
@@ -373,161 +371,175 @@ export default function Navbar() {
             </motion.button>
 
             {/* NOTIFICATIONS */}
-            <motion.button
-              whileHover={{
-                scale: 1.08,
-              }}
-              whileTap={{
-                scale: 0.95,
-              }}
-              className="
-                relative
-                hidden
-                md:flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/10
-                bg-white/5
-              "
-            >
-              <Bell size={18} />
-
-              <span
+            <Link href="/notifications">
+              <motion.button
+                whileHover={{
+                  scale: 1.08,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
                 className="
-                  absolute
-                  -right-1
-                  -top-1
-                  flex
-                  h-5
-                  w-5
+                  relative
+                  hidden
+                  md:flex
+                  h-11
+                  w-11
                   items-center
                   justify-center
                   rounded-full
-                  bg-red-500
-                  text-[10px]
-                  font-bold
+                  border
+                  border-white/10
+                  bg-white/5
+                  transition-all
+                  hover:bg-white/10
                 "
               >
-                3
-              </span>
-            </motion.button>
+                <Bell size={18} />
+
+                <span
+                  className="
+                    absolute
+                    -right-1
+                    -top-1
+                    flex
+                    h-5
+                    w-5
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-red-500
+                    text-[10px]
+                    font-bold
+                  "
+                >
+                  3
+                </span>
+              </motion.button>
+            </Link>
 
             {/* WISHLIST */}
-            <motion.button
-              whileHover={{
-                scale: 1.08,
-              }}
-              whileTap={{
-                scale: 0.95,
-              }}
-              className="
-                relative
-                hidden
-                md:flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/10
-                bg-white/5
-              "
-            >
-              <Heart size={18} />
-
-              <span
+            <Link href="/wishlist">
+              <motion.button
+                whileHover={{
+                  scale: 1.08,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
                 className="
-                  absolute
-                  -right-1
-                  -top-1
+                  relative
+                  hidden
+                  md:flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/5
+                  transition-all
+                  hover:bg-white/10
+                "
+              >
+                <Heart size={18} />
+
+                <span
+                  className="
+                    absolute
+                    -right-1
+                    -top-1
+                    flex
+                    h-5
+                    w-5
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-white
+                    text-[10px]
+                    font-bold
+                    text-black
+                  "
+                >
+                  2
+                </span>
+              </motion.button>
+            </Link>
+
+            {/* LOGIN / PROFILE */}
+            <Link href="/login">
+              <motion.button
+                whileHover={{
+                  scale: 1.08,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                className="
+                  hidden
+                  md:flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/10
+                  bg-white/5
+                  transition-all
+                  hover:bg-white/10
+                "
+              >
+                <User size={18} />
+              </motion.button>
+            </Link>
+
+            {/* CART */}
+            <Link href="/cart">
+              <motion.button
+                whileHover={{
+                  scale: 1.08,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                className="
+                  relative
                   flex
-                  h-5
-                  w-5
+                  h-12
+                  w-12
                   items-center
                   justify-center
                   rounded-full
                   bg-white
-                  text-[10px]
-                  font-bold
                   text-black
+                  shadow-2xl
                 "
               >
-                2
-              </span>
-            </motion.button>
+                <ShoppingBag size={18} />
 
-            {/* PROFILE */}
-            <motion.button
-              whileHover={{
-                scale: 1.08,
-              }}
-              whileTap={{
-                scale: 0.95,
-              }}
-              className="
-                hidden
-                md:flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/10
-                bg-white/5
-              "
-            >
-              <User size={18} />
-            </motion.button>
-
-            {/* CART */}
-            <motion.button
-              whileHover={{
-                scale: 1.08,
-              }}
-              whileTap={{
-                scale: 0.95,
-              }}
-              className="
-                relative
-                flex
-                h-12
-                w-12
-                items-center
-                justify-center
-                rounded-full
-                bg-white
-                text-black
-                shadow-2xl
-              "
-            >
-              <ShoppingBag size={18} />
-
-              <span
-                className="
-                  absolute
-                  -right-1
-                  -top-1
-                  flex
-                  h-5
-                  w-5
-                  items-center
-                  justify-center
-                  rounded-full
-                  bg-red-500
-                  text-[10px]
-                  font-bold
-                  text-white
-                "
-              >
-                5
-              </span>
-            </motion.button>
+                <span
+                  className="
+                    absolute
+                    -right-1
+                    -top-1
+                    flex
+                    h-5
+                    w-5
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-red-500
+                    text-[10px]
+                    font-bold
+                    text-white
+                  "
+                >
+                  5
+                </span>
+              </motion.button>
+            </Link>
 
             {/* MOBILE MENU */}
             <motion.button
@@ -559,316 +571,6 @@ export default function Navbar() {
           </div>
         </nav>
       </motion.header>
-
-      {/* SEARCH OVERLAY */}
-      <AnimatePresence>
-        {searchOpen && (
-          <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            exit={{
-              opacity: 0,
-            }}
-            className="
-              fixed
-              inset-0
-              z-[60]
-              bg-black/95
-              backdrop-blur-3xl
-            "
-          >
-            <div
-              className="
-                mx-auto
-                flex
-                h-full
-                max-w-4xl
-                flex-col
-                px-6
-                pt-40
-              "
-            >
-              {/* TOP */}
-              <div className="flex items-center justify-between">
-                <h2 className="text-5xl font-black">
-                  Search Fashion
-                </h2>
-
-                <button
-                  onClick={() =>
-                    setSearchOpen(false)
-                  }
-                  className="
-                    flex
-                    h-14
-                    w-14
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-white/10
-                    bg-white/5
-                  "
-                >
-                  <X />
-                </button>
-              </div>
-
-              {/* SEARCH BOX */}
-              <div className="mt-12">
-                <div
-                  className="
-                    flex
-                    items-center
-                    gap-4
-                    rounded-[30px]
-                    border
-                    border-white/10
-                    bg-white/[0.04]
-                    px-6
-                    py-5
-                  "
-                >
-                  <Search size={22} />
-
-                  <input
-                    type="text"
-                    placeholder="Search premium fashion..."
-                    className="
-                      w-full
-                      bg-transparent
-                      text-xl
-                      outline-none
-                      placeholder:text-zinc-500
-                    "
-                  />
-                </div>
-              </div>
-
-              {/* TRENDING */}
-              <div className="mt-14">
-                <p
-                  className="
-                    mb-6
-                    text-sm
-                    uppercase
-                    tracking-[0.3em]
-                    text-zinc-500
-                  "
-                >
-                  Trending Searches
-                </p>
-
-                <div className="flex flex-wrap gap-4">
-                  {[
-                    "Luxury Jackets",
-                    "Streetwear",
-                    "Sneakers",
-                    "Summer Collection",
-                    "New Arrivals",
-                  ].map((item) => (
-                    <button
-                      key={item}
-                      className="
-                        rounded-full
-                        border
-                        border-white/10
-                        bg-white/[0.03]
-                        px-6
-                        py-3
-                        text-sm
-                        uppercase
-                        tracking-[0.2em]
-                        transition-all
-                        hover:bg-white
-                        hover:text-black
-                      "
-                    >
-                      {item}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* MOBILE MENU */}
-      <AnimatePresence>
-        {mobileMenu && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: "100%",
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            exit={{
-              opacity: 0,
-              x: "100%",
-            }}
-            transition={{
-              duration: 0.35,
-            }}
-            className="
-              fixed
-              right-0
-              top-0
-              z-[55]
-              h-screen
-              w-[85%]
-              border-l
-              border-white/10
-              bg-black/95
-              backdrop-blur-3xl
-              lg:hidden
-            "
-          >
-            {/* TOP */}
-            <div
-              className="
-                flex
-                items-center
-                justify-between
-                border-b
-                border-white/10
-                px-6
-                py-6
-              "
-            >
-              <div>
-                <h2 className="text-2xl font-black">
-                  NextGrid
-                </h2>
-
-                <p
-                  className="
-                    text-xs
-                    uppercase
-                    tracking-[0.3em]
-                    text-zinc-500
-                  "
-                >
-                  Fashion Studio
-                </p>
-              </div>
-
-              <button
-                onClick={() =>
-                  setMobileMenu(false)
-                }
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-white/10
-                  bg-white/5
-                "
-              >
-                <X />
-              </button>
-            </div>
-
-            {/* LINKS */}
-            <div className="flex flex-col gap-6 px-6 py-10">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  initial={{
-                    opacity: 0,
-                    x: 40,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  transition={{
-                    delay: index * 0.08,
-                  }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() =>
-                      setMobileMenu(false)
-                    }
-                    className="
-                      flex
-                      items-center
-                      justify-between
-                      border-b
-                      border-white/5
-                      pb-5
-                      text-xl
-                      uppercase
-                      tracking-[0.2em]
-                      text-zinc-300
-                      transition-all
-                      hover:text-white
-                    "
-                  >
-                    <div className="flex items-center gap-3">
-                      <span>{item.name}</span>
-
-                      {item.badge && (
-                        <span
-                          className="
-                            rounded-full
-                            bg-white
-                            px-2
-                            py-1
-                            text-[9px]
-                            font-bold
-                            uppercase
-                            tracking-[0.15em]
-                            text-black
-                          "
-                        >
-                          New
-                        </span>
-                      )}
-                    </div>
-
-                    <ArrowRight size={18} />
-                  </Link>
-                </motion.div>
-              ))}
-
-              {/* CTA */}
-              <button
-                className="
-                  mt-8
-                  flex
-                  items-center
-                  justify-center
-                  gap-3
-                  rounded-full
-                  bg-white
-                  px-6
-                  py-5
-                  font-bold
-                  uppercase
-                  tracking-[0.2em]
-                  text-black
-                "
-              >
-                <Sparkles size={18} />
-                Explore Collection
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
