@@ -481,8 +481,11 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* CART */}
-            <Link href="/cart">
+            {/* DESKTOP CART ONLY */}
+            <Link
+              href="/cart"
+              className="hidden md:block"
+            >
               <motion.button
                 whileTap={{
                   scale: 0.95,
@@ -694,7 +697,6 @@ export default function Navbar() {
             >
               <div className="mt-20 space-y-4">
 
-                {/* PROFILE */}
                 <Link
                   href="/login"
                   onClick={() =>
@@ -724,7 +726,6 @@ export default function Navbar() {
                   <User size={20} />
                 </Link>
 
-                {/* MOBILE ITEMS */}
                 <Link
                   href="/wishlist"
                   onClick={() =>
@@ -817,9 +818,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-
-      {/* NAVBAR SPACE */}
-      <div className="h-[74px]" />
     </>
   );
 }

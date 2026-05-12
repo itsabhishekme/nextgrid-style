@@ -131,7 +131,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 py-12">
         <div className="overflow-hidden rounded-[45px] border border-white/10">
           <img
-            src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=2400&auto=format&fit=crop"
+            src="/images/style1.jpg"
             alt="Children"
             className="h-[850px] w-full object-cover transition duration-700 hover:scale-105"
           />
@@ -171,7 +171,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 pb-20 pt-12">
         <div className="overflow-hidden rounded-[50px] border border-white/10">
           <img
-            src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2600&auto=format&fit=crop"
+            src="/images/style.jpg"
             alt="Fashion Banner"
             className="h-[950px] w-full object-cover transition duration-700 hover:scale-105"
           />
