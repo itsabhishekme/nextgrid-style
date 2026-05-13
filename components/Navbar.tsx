@@ -4,10 +4,7 @@ import Link from "next/link";
 
 import {
   ShoppingBag,
-  Search,
   Heart,
-  Menu,
-  X,
   User,
   ChevronDown,
   Bell,
@@ -19,7 +16,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const navItems = [
   {
@@ -70,32 +67,8 @@ const luxuryDropdown = [
 ];
 
 export default function Navbar() {
-  const [mobileMenu, setMobileMenu] =
-    useState(false);
-
-  const [searchOpen, setSearchOpen] =
-    useState(false);
-
   const [luxuryOpen, setLuxuryOpen] =
     useState(false);
-
-  const [searchQuery, setSearchQuery] =
-    useState("");
-
-  useEffect(() => {
-    if (mobileMenu || searchOpen) {
-      document.body.style.overflow =
-        "hidden";
-    } else {
-      document.body.style.overflow =
-        "auto";
-    }
-
-    return () => {
-      document.body.style.overflow =
-        "auto";
-    };
-  }, [mobileMenu, searchOpen]);
 
   return (
     <>
@@ -126,6 +99,7 @@ export default function Navbar() {
       >
         <nav
           className="
+            relative
             mx-auto
             flex
             h-[74px]
@@ -138,32 +112,9 @@ export default function Navbar() {
             lg:px-10
           "
         >
+
           {/* LEFT */}
           <div className="flex items-center gap-4 lg:gap-14">
-
-            {/* MOBILE MENU */}
-            <motion.button
-              whileTap={{
-                scale: 0.9,
-              }}
-              onClick={() =>
-                setMobileMenu(true)
-              }
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/10
-                bg-white/5
-                lg:hidden
-              "
-            >
-              <Menu size={20} />
-            </motion.button>
 
             {/* LOGO */}
             <Link href="/">
@@ -364,31 +315,6 @@ export default function Navbar() {
           {/* RIGHT */}
           <div className="flex items-center gap-2 sm:gap-3 lg:gap-5">
 
-            {/* SEARCH */}
-            <motion.button
-              whileTap={{
-                scale: 0.95,
-              }}
-              onClick={() =>
-                setSearchOpen(true)
-              }
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-white/10
-                bg-white/5
-                transition-all
-                hover:bg-white/10
-              "
-            >
-              <Search size={18} />
-            </motion.button>
-
             {/* DESKTOP ONLY */}
             <div className="hidden md:flex items-center gap-3">
 
@@ -531,293 +457,6 @@ export default function Navbar() {
           </div>
         </nav>
       </motion.header>
-
-      {/* SEARCH MODAL */}
-      <AnimatePresence>
-        {searchOpen && (
-          <>
-            <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-              }}
-              onClick={() =>
-                setSearchOpen(false)
-              }
-              className="
-                fixed
-                inset-0
-                z-[90]
-                bg-black/70
-                backdrop-blur-xl
-              "
-            />
-
-            <motion.div
-              initial={{
-                y: -40,
-                opacity: 0,
-              }}
-              animate={{
-                y: 0,
-                opacity: 1,
-              }}
-              exit={{
-                y: -40,
-                opacity: 0,
-              }}
-              className="
-                fixed
-                left-1/2
-                top-24
-                z-[100]
-                w-[92%]
-                sm:w-[95%]
-                max-w-2xl
-                -translate-x-1/2
-                rounded-[32px]
-                border
-                border-white/10
-                bg-zinc-950
-                p-5
-                shadow-2xl
-              "
-            >
-              <div className="flex items-center gap-3">
-                <Search
-                  size={20}
-                  className="text-zinc-500"
-                />
-
-                <input
-                  type="text"
-                  placeholder="Search luxury fashion..."
-                  value={searchQuery}
-                  onChange={(e) =>
-                    setSearchQuery(
-                      e.target.value
-                    )
-                  }
-                  className="
-                    h-14
-                    w-full
-                    bg-transparent
-                    text-white
-                    outline-none
-                    placeholder:text-zinc-500
-                  "
-                />
-
-                <button
-                  onClick={() =>
-                    setSearchOpen(false)
-                  }
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-white
-                    text-black
-                  "
-                >
-                  <X size={18} />
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
-      {/* MOBILE MENU */}
-      <AnimatePresence>
-        {mobileMenu && (
-          <>
-            <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{
-                opacity: 0,
-              }}
-              onClick={() =>
-                setMobileMenu(false)
-              }
-              className="
-                fixed
-                inset-0
-                z-40
-                bg-black/60
-                backdrop-blur-sm
-                lg:hidden
-              "
-            />
-
-            <motion.div
-              initial={{
-                x: "100%",
-              }}
-              animate={{
-                x: 0,
-              }}
-              exit={{
-                x: "100%",
-              }}
-              transition={{
-                duration: 0.3,
-              }}
-              className="
-                fixed
-                right-0
-                top-0
-                z-50
-                h-screen
-                w-[82%]
-                sm:w-[75%]
-                max-w-sm
-                overflow-y-auto
-                border-l
-                border-white/10
-                bg-black/95
-                px-5
-                py-6
-                backdrop-blur-3xl
-                lg:hidden
-              "
-            >
-              <div className="mt-20 space-y-4">
-
-                <Link
-                  href="/login"
-                  onClick={() =>
-                    setMobileMenu(false)
-                  }
-                  className="
-                    flex
-                    items-center
-                    justify-between
-                    rounded-2xl
-                    bg-white
-                    px-5
-                    py-5
-                    text-black
-                  "
-                >
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.2em]">
-                      Welcome
-                    </p>
-
-                    <h3 className="mt-1 text-lg font-bold">
-                      Login Account
-                    </h3>
-                  </div>
-
-                  <User size={20} />
-                </Link>
-
-                <Link
-                  href="/wishlist"
-                  onClick={() =>
-                    setMobileMenu(false)
-                  }
-                  className="
-                    flex
-                    items-center
-                    justify-between
-                    rounded-2xl
-                    border
-                    border-white/5
-                    bg-white/[0.03]
-                    px-5
-                    py-4
-                  "
-                >
-                  Wishlist
-                  <ArrowRight size={16} />
-                </Link>
-
-                <Link
-                  href="/notifications"
-                  onClick={() =>
-                    setMobileMenu(false)
-                  }
-                  className="
-                    flex
-                    items-center
-                    justify-between
-                    rounded-2xl
-                    border
-                    border-white/5
-                    bg-white/[0.03]
-                    px-5
-                    py-4
-                  "
-                >
-                  Notifications
-                  <ArrowRight size={16} />
-                </Link>
-
-                <Link
-                  href="/cart"
-                  onClick={() =>
-                    setMobileMenu(false)
-                  }
-                  className="
-                    flex
-                    items-center
-                    justify-between
-                    rounded-2xl
-                    border
-                    border-white/5
-                    bg-white/[0.03]
-                    px-5
-                    py-4
-                  "
-                >
-                  Cart
-                  <ArrowRight size={16} />
-                </Link>
-
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() =>
-                      setMobileMenu(false)
-                    }
-                    className="
-                      flex
-                      items-center
-                      justify-between
-                      rounded-2xl
-                      border
-                      border-white/5
-                      bg-white/[0.03]
-                      px-5
-                      py-4
-                    "
-                  >
-                    {item.name}
-
-                    <ArrowRight size={16} />
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </>
   );
 }
