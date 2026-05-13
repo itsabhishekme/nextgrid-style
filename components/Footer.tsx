@@ -344,8 +344,6 @@ export default function Footer() {
                       text-white
                     "
                   >
-                    Explore
-                    <ExternalLink size={16} />
                   </div>
                 </motion.div>
               </Link>

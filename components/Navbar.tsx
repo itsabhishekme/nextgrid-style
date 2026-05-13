@@ -48,25 +48,6 @@ const navItems = [
   },
 ];
 
-const luxuryDropdown = [
-  {
-    title: "Premium Jackets",
-    href: "/luxury/jackets",
-  },
-  {
-    title: "Designer Shoes",
-    href: "/luxury/shoes",
-  },
-  {
-    title: "Luxury Watches",
-    href: "/luxury/watches",
-  },
-  {
-    title: "Accessories",
-    href: "/luxury/accessories",
-  },
-];
-
 export default function Navbar() {
   const [luxuryOpen, setLuxuryOpen] =
     useState(false);
