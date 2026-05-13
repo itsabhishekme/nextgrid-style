@@ -16,6 +16,13 @@ import {
   Headphones,
   Globe,
   Sparkles,
+  Send,
+  ChevronRight,
+  Star,
+  BadgeCheck,
+  Clock3,
+  Gift,
+  ExternalLink,
 } from "lucide-react";
 
 import { motion } from "framer-motion";
@@ -24,19 +31,29 @@ const features = [
   {
     icon: Truck,
     title: "Fast Delivery",
-    desc: "Express worldwide shipping",
+    desc: "Express worldwide shipping with real-time tracking support.",
+    href: "/shipping",
   },
 
   {
     icon: ShieldCheck,
     title: "Secure Payments",
-    desc: "100% protected checkout",
+    desc: "Advanced encrypted payment systems with complete protection.",
+    href: "/payments",
   },
 
   {
     icon: Headphones,
     title: "24/7 Support",
-    desc: "Premium customer care",
+    desc: "Premium customer support available all day for assistance.",
+    href: "/support",
+  },
+
+  {
+    icon: BadgeCheck,
+    title: "Premium Quality",
+    desc: "Luxury verified collections with high-quality standards.",
+    href: "/quality",
   },
 ];
 
@@ -61,6 +78,26 @@ const footerLinks = {
       name: "Luxury",
       href: "/luxury",
     },
+
+    {
+      name: "Trending",
+      href: "/trending",
+    },
+
+    {
+      name: "Accessories",
+      href: "/accessories",
+    },
+
+    {
+      name: "New Arrivals",
+      href: "/new-arrivals",
+    },
+
+    {
+      name: "Streetwear",
+      href: "/streetwear",
+    },
   ],
 
   Company: [
@@ -82,6 +119,26 @@ const footerLinks = {
     {
       name: "Contact",
       href: "/contact",
+    },
+
+    {
+      name: "Investors",
+      href: "/investors",
+    },
+
+    {
+      name: "Press Media",
+      href: "/press",
+    },
+
+    {
+      name: "Blog",
+      href: "/blog",
+    },
+
+    {
+      name: "Partners",
+      href: "/partners",
     },
   ],
 
@@ -105,6 +162,26 @@ const footerLinks = {
       name: "Privacy Policy",
       href: "/privacy",
     },
+
+    {
+      name: "Terms & Conditions",
+      href: "/terms",
+    },
+
+    {
+      name: "Track Order",
+      href: "/track-order",
+    },
+
+    {
+      name: "FAQs",
+      href: "/faqs",
+    },
+
+    {
+      name: "Customer Care",
+      href: "/customer-care",
+    },
   ],
 };
 
@@ -113,7 +190,6 @@ export default function Footer() {
     <footer
       className="
         relative
-        w-full
         overflow-hidden
 
         border-t
@@ -124,15 +200,7 @@ export default function Footer() {
       "
     >
       {/* BACKGROUND */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          overflow-hidden
-        "
-      >
-        {/* GRID */}
+      <div className="absolute inset-0 overflow-hidden">
         <div
           className="
             absolute
@@ -146,64 +214,121 @@ export default function Footer() {
                 rgba(255,255,255,0.06) 1px,
                 transparent 1px
               ),
-
               linear-gradient(
                 to bottom,
                 rgba(255,255,255,0.06) 1px,
                 transparent 1px
               )
             `,
-
             backgroundSize:
               "80px 80px",
           }}
         />
 
-        {/* LEFT GLOW */}
         <div
           className="
             absolute
-            left-[-100px]
-            top-[-100px]
+            left-[-120px]
+            top-[-120px]
 
-            h-[260px]
-            w-[260px]
+            h-[420px]
+            w-[420px]
 
             rounded-full
+
             bg-fuchsia-500/20
 
-            blur-[100px]
-
-            md:h-[420px]
-            md:w-[420px]
+            blur-[120px]
           "
         />
 
-        {/* RIGHT GLOW */}
         <div
           className="
             absolute
             bottom-[-120px]
             right-[-120px]
 
-            h-[280px]
-            w-[280px]
+            h-[420px]
+            w-[420px]
 
             rounded-full
+
             bg-cyan-500/20
 
-            blur-[100px]
-
-            md:h-[420px]
-            md:w-[420px]
+            blur-[120px]
           "
         />
       </div>
+
+      {/* TOP TAGS */}
+      <section
+        className="
+          relative
+
+          border-b
+          border-white/10
+        "
+      >
+        <div
+          className="
+            mx-auto
+            flex
+            max-w-7xl
+
+            flex-wrap
+            items-center
+            justify-center
+
+            gap-4
+
+            px-4
+            py-5
+          "
+        >
+          {[
+            "Premium Fashion",
+            "Luxury Streetwear",
+            "Secure Checkout",
+            "Express Delivery",
+            "Exclusive Collections",
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              whileHover={{
+                y: -2,
+              }}
+              className="
+                rounded-full
+
+                border
+                border-white/10
+
+                bg-white/[0.04]
+
+                px-5
+                py-3
+
+                text-sm
+                text-zinc-300
+
+                backdrop-blur-xl
+              "
+            >
+              <div className="flex items-center gap-2">
+                <Star size={14} />
+
+                {item}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* FEATURES */}
       <section
         className="
           relative
+
           border-b
           border-white/10
         "
@@ -217,89 +342,149 @@ export default function Footer() {
             gap-5
 
             px-4
-            py-10
+            py-12
 
-            sm:px-6
-
-            md:grid-cols-3
-
-            lg:px-8
+            md:grid-cols-2
+            xl:grid-cols-4
           "
         >
           {features.map((item, index) => {
             const Icon = item.icon;
 
             return (
-              <motion.div
+              <Link
                 key={index}
-                whileHover={{
-                  y: -4,
-                }}
-                transition={{
-                  duration: 0.25,
-                }}
-                className="
-                  rounded-[28px]
-
-                  border
-                  border-white/10
-
-                  bg-white/[0.04]
-
-                  p-6
-
-                  backdrop-blur-xl
-
-                  transition-all
-
-                  hover:border-white/20
-                  hover:bg-white/[0.06]
-                "
+                href={item.href}
               >
-                <div
+                <motion.div
+                  whileHover={{
+                    y: -6,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
                   className="
-                    flex
-                    h-14
-                    w-14
+                    group
+                    relative
 
-                    items-center
-                    justify-center
+                    cursor-pointer
 
-                    rounded-2xl
+                    overflow-hidden
 
-                    bg-white
-                    text-black
+                    rounded-[30px]
+
+                    border
+                    border-white/10
+
+                    bg-white/[0.04]
+
+                    p-7
+
+                    backdrop-blur-xl
+
+                    transition-all
+                    duration-300
+
+                    hover:border-white/20
+                    hover:bg-white/[0.06]
                   "
                 >
-                  <Icon size={24} />
-                </div>
+                  <div
+                    className="
+                      absolute
+                      inset-0
 
-                <h3
-                  className="
-                    mt-5
+                      opacity-0
 
-                    text-xl
-                    font-bold
+                      transition-opacity
+                      duration-500
 
-                    md:text-2xl
-                  "
-                >
-                  {item.title}
-                </h3>
+                      group-hover:opacity-100
+                    "
+                  >
+                    <div
+                      className="
+                        absolute
+                        inset-0
 
-                <p
-                  className="
-                    mt-2
+                        bg-gradient-to-r
+                        from-white/[0.03]
+                        via-white/[0.07]
+                        to-white/[0.03]
+                      "
+                    />
+                  </div>
 
-                    text-sm
-                    text-zinc-400
+                  <div
+                    className="
+                      relative
 
-                    md:text-base
-                  "
-                >
-                  {item.desc}
-                </p>
-              </motion.div>
+                      flex
+                      h-16
+                      w-16
+
+                      items-center
+                      justify-center
+
+                      rounded-2xl
+
+                      bg-white
+                      text-black
+                    "
+                  >
+                    <Icon size={28} />
+                  </div>
+
+                  <h3
+                    className="
+                      relative
+
+                      mt-6
+
+                      text-2xl
+                      font-black
+                    "
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className="
+                      relative
+
+                      mt-3
+
+                      text-sm
+                      leading-7
+
+                      text-zinc-400
+                    "
+                  >
+                    {item.desc}
+                  </p>
+
+                  <div
+                    className="
+                      relative
+
+                      mt-6
+
+                      flex
+                      items-center
+                      gap-2
+
+                      text-sm
+                      font-semibold
+
+                      text-white
+                    "
+                  >
+                    Explore
+
+                    <ExternalLink size={16} />
+                  </div>
+                </motion.div>
+              </Link>
             );
           })}
         </div>
@@ -313,70 +498,55 @@ export default function Footer() {
           max-w-7xl
 
           px-4
-          py-14
-
-          sm:px-6
-
-          lg:px-8
-          lg:py-20
+          py-16
         "
       >
         <div
           className="
             grid
-            gap-14
+            gap-16
 
-            lg:grid-cols-2
+            xl:grid-cols-[1.3fr_1fr]
           "
         >
           {/* LEFT */}
-          <div className="min-w-0">
+          <div>
             {/* LOGO */}
-            <div
-              className="
-                flex
-                items-center
-                gap-4
-              "
-            >
+            <div className="flex items-center gap-5">
               <motion.div
                 whileHover={{
                   rotate: 4,
-                  scale: 1.03,
+                  scale: 1.05,
                 }}
                 className="
                   flex
-                  h-16
-                  w-16
+                  h-20
+                  w-20
 
                   items-center
                   justify-center
 
                   overflow-hidden
 
-                  rounded-[22px]
+                  rounded-[28px]
 
                   border
                   border-white/10
 
                   bg-white
 
-                  shadow-[0_0_30px_rgba(255,255,255,0.15)]
-
-                  md:h-20
-                  md:w-20
+                  shadow-[0_0_40px_rgba(255,255,255,0.18)]
                 "
               >
                 <Image
                   src="/favicon.ico"
                   alt="logo"
-                  width={50}
-                  height={50}
-                  className="object-contain"
+                  width={54}
+                  height={54}
                 />
               </motion.div>
 
-              <div className="min-w-0">
+              <div>
                 <h2
                   className="
                     bg-gradient-to-r
@@ -386,30 +556,27 @@ export default function Footer() {
 
                     bg-clip-text
 
-                    text-2xl
+                    text-4xl
                     font-black
 
                     uppercase
 
-                    tracking-[0.12em]
+                    tracking-[0.15em]
 
                     text-transparent
-
-                    sm:text-3xl
-                    md:text-4xl
                   "
                 >
-                  NextGrid Style
+                  NextGrid
                 </h2>
 
                 <p
                   className="
-                    mt-1
+                    mt-2
 
                     text-xs
                     uppercase
 
-                    tracking-[0.25em]
+                    tracking-[0.4em]
 
                     text-zinc-500
                   "
@@ -422,75 +589,132 @@ export default function Footer() {
             {/* DESCRIPTION */}
             <p
               className="
-                mt-7
+                mt-8
 
-                max-w-2xl
+                max-w-3xl
 
                 text-base
-                leading-8
+                leading-9
 
                 text-zinc-400
 
                 md:text-lg
               "
             >
-              Experience futuristic fashion
-              with luxury collections,
-              premium styling, and a
-              world-class ecommerce
-              experience.
+              Experience futuristic luxury
+              fashion with modern ecommerce,
+              premium collections,
+              exclusive limited editions,
+              advanced shopping experience,
+              and beautifully designed
+              fashion journeys.
             </p>
 
             {/* CONTACT */}
             <div
               className="
-                mt-8
-                space-y-4
+                mt-10
+
+                grid
+                gap-5
+
+                md:grid-cols-2
               "
             >
               {[
                 {
                   icon: Mail,
                   text: "support@nextgrid.com",
+                  href: "mailto:support@nextgrid.com",
                 },
 
                 {
                   icon: Phone,
-                  text: "+91 98765 43210",
+                  text: "+91 1120 0000",
+                  href: "tel:+919876543210",
                 },
 
                 {
                   icon: MapPin,
                   text: "Bangalore, India",
+                  href: "/stores",
                 },
 
                 {
                   icon: Globe,
                   text: "www.nextgrid.com",
+                  href: "/",
                 },
               ].map((item, i) => {
                 const Icon = item.icon;
 
                 return (
-                  <div
+                  <Link
                     key={i}
-                    className="
-                      flex
-                      items-center
-                      gap-4
-
-                      text-sm
-                      text-zinc-400
-
-                      md:text-base
-                    "
+                    href={item.href}
                   >
-                    <Icon size={18} />
+                    <motion.div
+                      whileHover={{
+                        y: -3,
+                      }}
+                      className="
+                        group
 
-                    <span className="break-all">
-                      {item.text}
-                    </span>
-                  </div>
+                        flex
+                        cursor-pointer
+
+                        items-center
+                        gap-4
+
+                        rounded-2xl
+
+                        border
+                        border-white/10
+
+                        bg-white/[0.03]
+
+                        px-5
+                        py-4
+
+                        transition-all
+                        duration-300
+
+                        hover:border-white/20
+                        hover:bg-white/[0.05]
+                      "
+                    >
+                      <div
+                        className="
+                          flex
+                          h-12
+                          w-12
+
+                          items-center
+                          justify-center
+
+                          rounded-xl
+
+                          bg-white/[0.06]
+
+                          transition-all
+
+                          group-hover:bg-white
+                          group-hover:text-black
+                        "
+                      >
+                        <Icon size={18} />
+                      </div>
+
+                      <span
+                        className="
+                          text-sm
+                          text-zinc-300
+                        "
+                      >
+                        {item.text}
+                      </span>
+                    </motion.div>
+                  </Link>
                 );
               })}
             </div>
@@ -502,199 +726,186 @@ export default function Footer() {
 
                 flex
                 flex-col
-                gap-4
+                gap-5
 
                 sm:flex-row
-                sm:flex-wrap
               "
             >
-              {/* APP STORE */}
-              <motion.a
-                href="#"
-                whileHover={{
-                  scale: 1.02,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                className="
-                  group
-                  relative
-
-                  flex
-                  min-h-[84px]
-                  w-full
-
-                  items-center
-                  justify-center
-
-                  gap-4
-
-                  overflow-hidden
-
-                  rounded-[28px]
-
-                  border
-                  border-white/10
-
-                  bg-black
-
-                  px-7
-                  py-5
-
-                  text-white
-
-                  transition-all
-
-                  hover:border-white/20
-                  hover:bg-zinc-900
-
-                  sm:w-auto
-                  sm:min-w-[260px]
-                "
-              >
-                <div
+              <Link href="/app-store">
+                <motion.div
+                  whileHover={{
+                    scale: 1.02,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
                   className="
+                    group
+                    relative
+
                     flex
-                    h-14
-                    w-14
+                    min-h-[90px]
+                    min-w-[280px]
+
+                    cursor-pointer
 
                     items-center
-                    justify-center
+                    gap-5
 
-                    rounded-2xl
+                    overflow-hidden
 
-                    bg-white
-                    text-black
-                  "
-                >
-                  <Apple size={28} />
-                </div>
+                    rounded-[28px]
 
-                <div className="text-left">
-                  <p
-                    className="
-                      text-[10px]
-                      font-semibold
+                    border
+                    border-white/10
 
-                      uppercase
+                    bg-black
 
-                      tracking-[0.28em]
-
-                      text-zinc-400
-                    "
-                  >
-                    Download on the
-                  </p>
-
-                  <h4
-                    className="
-                      mt-1
-
-                      text-xl
-                      font-black
-                    "
-                  >
-                    App Store
-                  </h4>
-                </div>
-              </motion.a>
-
-              {/* GOOGLE PLAY */}
-              <motion.a
-                href="#"
-                whileHover={{
-                  scale: 1.02,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                className="
-                  group
-                  relative
-
-                  flex
-                  min-h-[84px]
-                  w-full
-
-                  items-center
-                  justify-center
-
-                  gap-4
-
-                  overflow-hidden
-
-                  rounded-[28px]
-
-                  border
-                  border-white/10
-
-                  bg-black
-
-                  px-7
-                  py-5
-
-                  text-white
-
-                  transition-all
-
-                  hover:border-white/20
-                  hover:bg-zinc-900
-
-                  sm:w-auto
-                  sm:min-w-[260px]
-                "
-              >
-                <div
-                  className="
-                    flex
-                    h-14
-                    w-14
-
-                    items-center
-                    justify-center
-
-                    rounded-2xl
-
-                    bg-white/[0.08]
+                    px-8
+                    py-5
 
                     transition-all
+                    duration-300
 
-                    group-hover:bg-white
-                    group-hover:text-black
+                    hover:border-white/20
+                    hover:bg-zinc-900
                   "
                 >
-                  <Play size={26} />
-                </div>
-
-                <div className="text-left">
-                  <p
+                  <div
                     className="
-                      text-[10px]
-                      font-semibold
+                      flex
+                      h-16
+                      w-16
 
-                      uppercase
+                      items-center
+                      justify-center
 
-                      tracking-[0.28em]
+                      rounded-2xl
 
-                      text-zinc-400
+                      bg-white
+                      text-black
                     "
                   >
-                    Get it on
-                  </p>
+                    <Apple size={30} />
+                  </div>
 
-                  <h4
+                  <div>
+                    <p
+                      className="
+                        text-[10px]
+                        uppercase
+
+                        tracking-[0.3em]
+
+                        text-zinc-400
+                      "
+                    >
+                      Download on the
+                    </p>
+
+                    <h4
+                      className="
+                        mt-1
+
+                        text-2xl
+                        font-black
+                      "
+                    >
+                      App Store
+                    </h4>
+                  </div>
+                </motion.div>
+              </Link>
+
+              <Link href="/google-play">
+                <motion.div
+                  whileHover={{
+                    scale: 1.02,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="
+                    group
+                    relative
+
+                    flex
+                    min-h-[90px]
+                    min-w-[280px]
+
+                    cursor-pointer
+
+                    items-center
+                    gap-5
+
+                    overflow-hidden
+
+                    rounded-[28px]
+
+                    border
+                    border-white/10
+
+                    bg-black
+
+                    px-8
+                    py-5
+
+                    transition-all
+                    duration-300
+
+                    hover:border-white/20
+                    hover:bg-zinc-900
+                  "
+                >
+                  <div
                     className="
-                      mt-1
+                      flex
+                      h-16
+                      w-16
 
-                      text-xl
-                      font-black
+                      items-center
+                      justify-center
+
+                      rounded-2xl
+
+                      bg-white/[0.08]
+
+                      transition-all
+
+                      group-hover:bg-white
+                      group-hover:text-black
                     "
                   >
-                    Google Play
-                  </h4>
-                </div>
-              </motion.a>
+                    <Play size={30} />
+                  </div>
+
+                  <div>
+                    <p
+                      className="
+                        text-[10px]
+                        uppercase
+
+                        tracking-[0.3em]
+
+                        text-zinc-400
+                      "
+                    >
+                      Get it on
+                    </p>
+
+                    <h4
+                      className="
+                        mt-1
+
+                        text-2xl
+                        font-black
+                      "
+                    >
+                      Google Play
+                    </h4>
+                  </div>
+                </motion.div>
+              </Link>
             </div>
           </div>
 
@@ -705,23 +916,18 @@ export default function Footer() {
               grid-cols-2
               gap-10
 
-              sm:grid-cols-3
+              lg:grid-cols-3
             "
           >
             {Object.entries(footerLinks).map(
               ([title, links]) => (
-                <div
-                  key={title}
-                  className="min-w-0"
-                >
+                <div key={title}>
                   <h3
                     className="
-                      mb-5
+                      mb-6
 
-                      text-lg
+                      text-2xl
                       font-black
-
-                      md:text-2xl
                     "
                   >
                     {title}
@@ -737,26 +943,28 @@ export default function Footer() {
 
                             flex
                             items-center
-                            gap-2
+                            gap-3
 
-                            text-sm
+                            rounded-xl
+
+                            px-3
+                            py-2
+
                             text-zinc-400
 
                             transition-all
+                            duration-300
 
+                            hover:bg-white/[0.04]
                             hover:text-white
-
-                            md:text-base
                           "
                         >
-                          <ArrowRight
-                            size={14}
+                          <ChevronRight
+                            size={16}
                             className="
-                              opacity-0
+                              transition-transform
 
-                              transition-all
-
-                              group-hover:opacity-100
+                              group-hover:translate-x-1
                             "
                           />
 
@@ -776,22 +984,22 @@ export default function Footer() {
           className="
             relative
 
-            mt-20
+            mt-24
 
             overflow-hidden
 
-            rounded-[36px]
+            rounded-[40px]
 
             border
             border-white/10
 
             bg-white/[0.04]
 
-            p-6
+            p-8
 
             backdrop-blur-2xl
 
-            md:p-10
+            md:p-12
           "
         >
           <div
@@ -800,14 +1008,14 @@ export default function Footer() {
               right-0
               top-0
 
-              h-40
-              w-40
+              h-52
+              w-52
 
               rounded-full
 
               bg-fuchsia-500/10
 
-              blur-[90px]
+              blur-[100px]
             "
           />
 
@@ -817,15 +1025,15 @@ export default function Footer() {
 
               flex
               flex-col
-              gap-8
+              gap-10
 
-              lg:flex-row
-              lg:items-center
-              lg:justify-between
+              xl:flex-row
+              xl:items-center
+              xl:justify-between
             "
           >
             {/* LEFT */}
-            <div>
+            <div className="max-w-2xl">
               <div
                 className="
                   inline-flex
@@ -837,36 +1045,38 @@ export default function Footer() {
                   border
                   border-white/10
 
-                  bg-white/[0.04]
+                  bg-white/[0.05]
 
-                  px-5
+                  px-6
                   py-3
                 "
               >
-                <Sparkles size={16} />
+                <Sparkles size={18} />
 
                 <span
                   className="
                     text-xs
                     uppercase
 
-                    tracking-[0.3em]
+                    tracking-[0.35em]
 
                     text-zinc-300
                   "
                 >
-                  Newsletter
+                  Newsletter Access
                 </span>
               </div>
 
               <h2
                 className="
-                  mt-5
+                  mt-6
 
-                  text-3xl
+                  text-4xl
                   font-black
 
-                  md:text-5xl
+                  leading-tight
+
+                  md:text-6xl
                 "
               >
                 Stay Updated
@@ -874,56 +1084,107 @@ export default function Footer() {
 
               <p
                 className="
-                  mt-4
+                  mt-5
+
+                  text-base
+                  leading-8
 
                   text-zinc-400
+
+                  md:text-lg
                 "
               >
                 Receive premium fashion
-                drops and exclusive offers.
+                drops, luxury collections,
+                special offers, and
+                exclusive ecommerce updates.
               </p>
             </div>
 
             {/* RIGHT */}
             <form
+              onSubmit={(e) => {
+                e.preventDefault();
+
+                const form =
+                  e.currentTarget;
+
+                const input =
+                  form.querySelector(
+                    "input"
+                  );
+
+                if (
+                  input &&
+                  input.value.trim() !== ""
+                ) {
+                  window.location.href =
+                    "/subscribe-success";
+
+                  input.value = "";
+                }
+              }}
               className="
                 flex
                 w-full
-                max-w-xl
+                max-w-2xl
 
                 flex-col
-                gap-4
+                gap-5
 
                 sm:flex-row
               "
             >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="
-                  h-16
-                  flex-1
+              <div className="relative flex-1">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                  className="
+                    h-16
+                    w-full
 
-                  rounded-2xl
+                    rounded-2xl
 
-                  border
-                  border-white/10
+                    border
+                    border-white/10
 
-                  bg-black/40
+                    bg-black/40
 
-                  px-6
+                    px-6
+                    pr-14
 
-                  text-white
+                    text-white
 
-                  outline-none
+                    outline-none
 
-                  placeholder:text-zinc-500
+                    transition-all
+                    duration-300
 
-                  focus:border-white/30
-                "
-              />
+                    placeholder:text-zinc-500
+
+                    focus:border-white/30
+                    focus:ring-2
+                    focus:ring-white/20
+                  "
+                />
+
+                <Send
+                  size={18}
+                  className="
+                    absolute
+                    right-5
+                    top-1/2
+
+                    -translate-y-1/2
+
+                    text-zinc-500
+                  "
+                />
+              </div>
 
               <motion.button
+                type="submit"
                 whileHover={{
                   scale: 1.02,
                 }}
@@ -931,32 +1192,52 @@ export default function Footer() {
                   scale: 0.98,
                 }}
                 className="
+                  group
+                  relative
+
                   flex
                   h-16
+
+                  cursor-pointer
 
                   items-center
                   justify-center
 
                   gap-3
 
+                  overflow-hidden
+
                   rounded-2xl
 
                   bg-white
 
-                  px-8
+                  px-10
 
-                  font-bold
+                  font-black
 
                   uppercase
 
                   tracking-[0.2em]
 
                   text-black
+
+                  transition-all
+                  duration-300
+
+                  hover:bg-zinc-200
                 "
               >
                 Subscribe
 
-                <ArrowRight size={18} />
+                <ArrowRight
+                  size={18}
+                  className="
+                    transition-transform
+                    duration-300
+
+                    group-hover:translate-x-1
+                  "
+                />
               </motion.button>
             </form>
           </div>
@@ -965,12 +1246,12 @@ export default function Footer() {
         {/* BOTTOM */}
         <div
           className="
-            mt-14
+            mt-16
 
             border-t
             border-white/10
 
-            pt-8
+            pt-10
           "
         >
           <div
@@ -990,14 +1271,15 @@ export default function Footer() {
                 text-zinc-500
               "
             >
-              © 2026 NextGrid. All rights reserved.
+              © 2026 NextGrid Fashion.
+              All rights reserved.
             </p>
 
             <div
               className="
                 flex
                 flex-wrap
-                gap-5
+                gap-4
               "
             >
               {[
@@ -1020,11 +1302,18 @@ export default function Footer() {
                   key={item.name}
                   href={item.href}
                   className="
+                    rounded-xl
+
+                    px-4
+                    py-2
+
                     text-sm
                     text-zinc-500
 
                     transition-all
+                    duration-300
 
+                    hover:bg-white/[0.04]
                     hover:text-white
                   "
                 >
@@ -1055,29 +1344,12 @@ export default function Footer() {
               <span
                 className="
                   text-sm
-                  text-zinc-400
+                  text-zinc-300
                 "
               >
-                Secure Payments
+                Secure Payments Enabled
               </span>
             </div>
-          </div>
-
-          {/* DEVELOPER */}
-          <div className="mt-8 text-center">
-            <p
-              className="
-                text-xs
-
-                uppercase
-
-                tracking-[0.3em]
-
-                text-zinc-600
-              "
-            >
-              Developed by EchoSoul Developer
-            </p>
           </div>
         </div>
       </div>
