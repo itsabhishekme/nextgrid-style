@@ -2,14 +2,39 @@
 
 import {
   Clock3,
+  Headphones,
   Mail,
-  MapPin,
+  MessageCircle,
   Phone,
   Send,
+  ShieldCheck,
   Sparkles,
 } from "lucide-react";
 
-export default function ContactPage() {
+const supportOptions = [
+  {
+    icon: MessageCircle,
+    title: "Live Chat",
+    description: "Chat instantly with our customer support specialists.",
+  },
+  {
+    icon: Mail,
+    title: "Email Support",
+    description: "Get detailed assistance for orders and account issues.",
+  },
+  {
+    icon: Phone,
+    title: "Phone Assistance",
+    description: "Talk directly with our support team for quick help.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Secure Resolution",
+    description: "Your account and order information stay protected.",
+  },
+];
+
+export default function ContactSupportPage() {
   return (
     <main className="min-h-screen bg-white text-black">
       {/* Hero */}
@@ -17,115 +42,126 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-100 via-white to-white" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-4xl text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-5 py-2 text-sm font-medium shadow-sm">
-              <Sparkles className="h-4 w-4" />
-              Contact NextGrid Fashion
+              <Headphones className="h-4 w-4" />
+              24/7 Customer Support
             </div>
 
             <h1 className="text-5xl font-black tracking-tight sm:text-6xl">
-              Let’s Start A
-              <span className="block text-neutral-500">Conversation</span>
+              We’re Here
+              <span className="block text-neutral-500">To Help You</span>
             </h1>
 
-            <p className="mt-6 text-lg leading-8 text-neutral-600">
-              Have a question, partnership idea, or need support? Our team is
-              here to help you.
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-neutral-600">
+              Need help with orders, payments, returns, or your account? Our
+              support team is always ready to assist you.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Support Options */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2">
-          {/* Contact Info */}
+        <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+          {supportOptions.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={index}
+                className="rounded-3xl border border-neutral-200 bg-white p-8 transition hover:-translate-y-1 hover:shadow-2xl"
+              >
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
+                  <Icon className="h-6 w-6" />
+                </div>
+
+                <h3 className="text-2xl font-black">{item.title}</h3>
+
+                <p className="mt-4 leading-7 text-neutral-600">
+                  {item.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Contact + Form */}
+      <section className="bg-neutral-50 py-20">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-8">
+          {/* Info */}
           <div>
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white">
+              <Sparkles className="h-4 w-4" />
+              Support Information
+            </div>
+
             <h2 className="text-4xl font-black leading-tight">
-              Get In Touch
+              Contact Our Support Team
             </h2>
 
-            <p className="mt-5 text-lg leading-8 text-neutral-600">
-              We’d love to hear from you. Reach out for customer support,
-              collaborations, press inquiries, or anything fashion related.
+            <p className="mt-6 text-lg leading-8 text-neutral-600">
+              Reach out through chat, email, or phone for quick and reliable
+              support regarding your shopping experience.
             </p>
 
             <div className="mt-10 space-y-6">
-              <div className="flex items-start gap-5 rounded-3xl border border-neutral-200 p-6 transition hover:shadow-lg">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
-                  <MapPin className="h-6 w-6" />
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold">Office Address</h3>
-
-                  <p className="mt-2 text-neutral-600">
-                    12 Fashion Avenue,
-                    <br />
-                    Bangalore, Karnataka,
-                    <br />
-                    India
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-5 rounded-3xl border border-neutral-200 p-6 transition hover:shadow-lg">
+              <div className="flex items-start gap-5 rounded-3xl border border-neutral-200 bg-white p-6">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
                   <Mail className="h-6 w-6" />
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold">Email Address</h3>
+                  <h3 className="text-xl font-bold">Email Support</h3>
 
                   <p className="mt-2 text-neutral-600">
                     support@nextgridfashion.com
-                    <br />
-                    careers@nextgridfashion.com
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-5 rounded-3xl border border-neutral-200 p-6 transition hover:shadow-lg">
+              <div className="flex items-start gap-5 rounded-3xl border border-neutral-200 bg-white p-6">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
                   <Phone className="h-6 w-6" />
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold">Phone Number</h3>
+                  <h3 className="text-xl font-bold">Phone Support</h3>
 
                   <p className="mt-2 text-neutral-600">
                     +91 98765 43210
-                    <br />
-                    +91 91234 56789
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-5 rounded-3xl border border-neutral-200 p-6 transition hover:shadow-lg">
+              <div className="flex items-start gap-5 rounded-3xl border border-neutral-200 bg-white p-6">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
                   <Clock3 className="h-6 w-6" />
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold">Working Hours</h3>
+                  <h3 className="text-xl font-bold">Support Hours</h3>
 
                   <p className="mt-2 text-neutral-600">
-                    Monday - Friday
+                    Monday - Sunday
                     <br />
-                    9:00 AM - 6:00 PM
+                    24/7 Assistance
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="rounded-[32px] border border-neutral-200 bg-white p-8 shadow-sm lg:p-10">
+          {/* Form */}
+          <div className="rounded-[36px] bg-white p-8 shadow-sm lg:p-10">
             <div className="mb-8">
-              <h2 className="text-3xl font-black">Send Message</h2>
+              <h2 className="text-3xl font-black">
+                Submit A Request
+              </h2>
 
               <p className="mt-3 text-neutral-600">
-                Fill out the form below and our team will get back to you soon.
+                Fill out the form below and our team will respond shortly.
               </p>
             </div>
 
@@ -170,12 +206,12 @@ export default function ContactPage() {
 
               <div>
                 <label className="mb-2 block text-sm font-semibold">
-                  Subject
+                  Order Number
                 </label>
 
                 <input
                   type="text"
-                  placeholder="How can we help?"
+                  placeholder="#NGF123456"
                   className="w-full rounded-2xl border border-neutral-300 px-5 py-4 outline-none transition focus:border-black"
                 />
               </div>
@@ -187,7 +223,7 @@ export default function ContactPage() {
 
                 <textarea
                   rows={6}
-                  placeholder="Write your message..."
+                  placeholder="Describe your issue..."
                   className="w-full resize-none rounded-2xl border border-neutral-300 px-5 py-4 outline-none transition focus:border-black"
                 />
               </div>
@@ -196,7 +232,7 @@ export default function ContactPage() {
                 type="submit"
                 className="flex w-full items-center justify-center gap-2 rounded-2xl bg-black px-6 py-4 font-semibold text-white transition hover:bg-neutral-800"
               >
-                Send Message
+                Send Request
                 <Send className="h-5 w-5" />
               </button>
             </form>

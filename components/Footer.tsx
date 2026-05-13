@@ -69,24 +69,24 @@ const footerLinks = {
 
   Company: [
     { name: "About", href: "/about" },
-    { name: "Careers", href: "/careers" },
-    { name: "Stores", href: "/stores" },
-    { name: "Contact", href: "/contact" },
-    { name: "Investors", href: "/investors" },
-    { name: "Press Media", href: "/press" },
-    { name: "Blog", href: "/blog" },
-    { name: "Partners", href: "/partners" },
+    { name: "Careers", href: "/company/careers" },
+    { name: "Stores", href: "/company/stores" },
+    { name: "Contact", href: "/company/contact" },
+    { name: "Investors", href: "/company/investors" },
+    { name: "Press Media", href: "/company/press" },
+    { name: "Blog", href: "/company/blog" },
+    { name: "Partners", href: "/company/partners" },
   ],
 
   Support: [
-    { name: "Help Center", href: "/help" },
-    { name: "Shipping", href: "/shipping" },
-    { name: "Returns", href: "/returns" },
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms & Conditions", href: "/terms" },
-    { name: "Track Order", href: "/track-order" },
-    { name: "FAQs", href: "/faqs" },
-    { name: "Customer Care", href: "/customer-care" },
+    { name: "Help Center", href: "/support/help" },
+    { name: "Shipping", href: "/support/shipping" },
+    { name: "Returns", href: "/support/returns" },
+    { name: "Privacy Policy", href: "/support/privacy" },
+    { name: "Terms & Conditions", href: "/support/terms" },
+    { name: "Track Order", href: "/support/track-order" },
+    { name: "FAQs", href: "/support/faqs" },
+    { name: "Customer Care", href: "/support/customer-care" },
   ],
 };
 
@@ -920,10 +920,10 @@ export default function Footer() {
               gap-6
             "
           >
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/terms">Terms</Link>
-            <Link href="/cookies">Cookies</Link>
-            <Link href="/security">Security</Link>
+            <Link href="/support/privacy">Privacy</Link>
+            <Link href="/support/terms">Terms</Link>
+            <Link href="/support/cookies">Cookies</Link>
+            <Link href="/support/security">Security</Link>
           </div>
         </div>
       </section>
