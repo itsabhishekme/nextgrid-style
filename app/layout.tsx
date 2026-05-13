@@ -1,17 +1,24 @@
-import type { Metadata } from "next";
+import type {
+  Metadata,
+  Viewport,
+} from "next";
 
 import "./globals.css";
 
 import { Poppins } from "next/font/google";
 
 import Navbar from "@/components/Navbar";
-
 import MobileNav from "@/components/MobileNav";
-
 import Footer from "@/components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
+
+  display: "swap",
+
+  preload: true,
+
+  variable: "--font-poppins",
 
   weight: [
     "100",
@@ -24,11 +31,13 @@ const poppins = Poppins({
     "800",
     "900",
   ],
-
-  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    "https://nextgridstyle.com"
+  ),
+
   title: {
     default: "NextGrid Style Fashion",
 
@@ -37,7 +46,9 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Luxury futuristic fashion platform powered by Next.js and Capacitor.",
+    "Luxury futuristic fashion ecommerce platform powered by Next.js and Capacitor.",
+
+  manifest: "/manifest.json",
 
   keywords: [
     "NextGrid",
@@ -45,8 +56,8 @@ export const metadata: Metadata = {
     "Fashion Ecommerce",
     "Next.js Fashion",
     "Capacitor App",
-    "Modern Clothing",
     "Streetwear",
+    "Modern Fashion",
   ],
 
   authors: [
@@ -59,20 +70,25 @@ export const metadata: Metadata = {
 
   publisher: "NextGrid Studio",
 
-  metadataBase: new URL(
-    "https://nextgridstyle.com"
-  ),
+  robots: {
+    index: true,
+    follow: true,
+  },
 
   openGraph: {
     title: "NextGrid Style Fashion",
 
     description:
-      "Premium futuristic fashion experience.",
+      "Luxury futuristic fashion ecommerce experience.",
 
     url: "https://nextgridstyle.com",
 
     siteName:
       "NextGrid Style Fashion",
+
+    locale: "en_US",
+
+    type: "website",
 
     images: [
       {
@@ -85,10 +101,6 @@ export const metadata: Metadata = {
         alt: "NextGrid Fashion",
       },
     ],
-
-    locale: "en_US",
-
-    type: "website",
   },
 
   twitter: {
@@ -97,29 +109,44 @@ export const metadata: Metadata = {
     title: "NextGrid Style Fashion",
 
     description:
-      "Luxury fashion ecommerce platform.",
+      "Luxury futuristic fashion ecommerce platform.",
 
-    images: ["/banners/hero-banner.jpg"],
-  },
-
-  robots: {
-    index: true,
-
-    follow: true,
+    images: [
+      "/banners/hero-banner.jpg",
+    ],
   },
 
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        url: "/icons/icon-192.webp",
+
+        sizes: "192x192",
+
+        type: "image/webp",
+      },
+      {
+        url: "/icons/icon-512.webp",
+
+        sizes: "512x512",
+
+        type: "image/webp",
+      },
+    ],
+
+    apple: [
+      {
+        url: "/icons/icon-192.webp",
+
+        sizes: "192x192",
+      },
+    ],
 
     shortcut: "/favicon.ico",
-
-    apple: "/apple-touch-icon.png",
   },
-
-  manifest: "/manifest.json",
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   width: "device-width",
 
   initialScale: 1,
@@ -127,6 +154,10 @@ export const viewport = {
   maximumScale: 1,
 
   viewportFit: "cover",
+
+  themeColor: "#000000",
+
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -144,23 +175,26 @@ export default function RootLayout({
       "
     >
       <body
+        suppressHydrationWarning
         className={`
           ${poppins.variable}
 
           relative
           min-h-screen
+          w-full
           overflow-x-hidden
 
           bg-black
-          font-sans
           text-white
+
           antialiased
+          font-sans
 
           selection:bg-white
           selection:text-black
         `}
       >
-        {/* GLOBAL PREMIUM BACKGROUND */}
+        {/* PREMIUM BACKGROUND */}
         <div
           className="
             pointer-events-none
@@ -175,11 +209,22 @@ export default function RootLayout({
             className="
               absolute
               inset-0
-              opacity-[0.03]
+              opacity-[0.035]
             "
             style={{
-              backgroundImage:
-                "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)",
+              backgroundImage: `
+                linear-gradient(
+                  to right,
+                  rgba(255,255,255,0.06) 1px,
+                  transparent 1px
+                ),
+
+                linear-gradient(
+                  to bottom,
+                  rgba(255,255,255,0.06) 1px,
+                  transparent 1px
+                )
+              `,
 
               backgroundSize:
                 "80px 80px",
@@ -190,27 +235,49 @@ export default function RootLayout({
           <div
             className="
               absolute
-              left-[-250px]
-              top-[-250px]
-              h-[700px]
-              w-[700px]
+              left-[-140px]
+              top-[-140px]
+
+              h-[320px]
+              w-[320px]
+
               rounded-full
-              bg-pink-500/10
-              blur-[180px]
+              bg-pink-500/20
+
+              blur-[90px]
+
+              sm:h-[420px]
+              sm:w-[420px]
+
+              md:h-[600px]
+              md:w-[600px]
+
+              md:blur-[150px]
             "
           />
 
-          {/* RIGHT GLOW */}
+          {/* RIGHT CYAN GLOW */}
           <div
             className="
               absolute
-              right-[-220px]
+              right-[-160px]
               top-[15%]
-              h-[650px]
-              w-[650px]
+
+              h-[320px]
+              w-[320px]
+
               rounded-full
-              bg-cyan-500/10
-              blur-[180px]
+              bg-cyan-500/20
+
+              blur-[90px]
+
+              sm:h-[420px]
+              sm:w-[420px]
+
+              md:h-[620px]
+              md:w-[620px]
+
+              md:blur-[160px]
             "
           />
 
@@ -220,30 +287,61 @@ export default function RootLayout({
               absolute
               left-1/2
               top-1/2
-              h-[550px]
-              w-[550px]
+
+              h-[220px]
+              w-[220px]
+
               -translate-x-1/2
               -translate-y-1/2
+
               rounded-full
-              bg-white/[0.04]
-              blur-[160px]
+              bg-white/[0.05]
+
+              blur-[80px]
+
+              md:h-[480px]
+              md:w-[480px]
+
+              md:blur-[140px]
             "
           />
 
-          {/* MOBILE EXTRA GLOW */}
+          {/* MOBILE PURPLE GLOW */}
           <div
             className="
               absolute
-              bottom-[-150px]
+              bottom-[-100px]
               left-1/2
-              h-[350px]
-              w-[350px]
+
+              h-[240px]
+              w-[240px]
+
               -translate-x-1/2
+
               rounded-full
-              bg-violet-500/10
-              blur-[120px]
+              bg-violet-500/20
+
+              blur-[90px]
+
               md:hidden
             "
+          />
+
+          {/* NOISE */}
+          <div
+            className="
+              absolute
+              inset-0
+              opacity-[0.02]
+              mix-blend-soft-light
+            "
+            style={{
+              backgroundImage:
+                "radial-gradient(rgba(255,255,255,0.25) 1px, transparent 1px)",
+
+              backgroundSize:
+                "4px 4px",
+            }}
           />
         </div>
 
@@ -253,9 +351,11 @@ export default function RootLayout({
             fixed
             left-0
             top-0
-            z-[120]
+            z-[200]
+
             h-[2px]
             w-full
+
             bg-gradient-to-r
             from-transparent
             via-white
@@ -263,7 +363,7 @@ export default function RootLayout({
           "
         />
 
-        {/* MAIN WRAPPER */}
+        {/* APP WRAPPER */}
         <div
           className="
             relative
@@ -274,13 +374,13 @@ export default function RootLayout({
             overflow-x-hidden
           "
         >
-          {/* DESKTOP NAVBAR */}
+          {/* DESKTOP NAV */}
           <Navbar />
 
-          {/* MOBILE NAVBAR */}
+          {/* MOBILE NAV */}
           <MobileNav />
 
-          {/* PAGE CONTENT */}
+          {/* MAIN */}
           <main
             className="
               relative
@@ -288,16 +388,15 @@ export default function RootLayout({
               flex-1
               w-full
 
-              overflow-visible
               overflow-x-hidden
 
-              pt-[74px]
+              pt-[72px]
 
-              pb-[120px]
+              pb-[110px]
               md:pb-0
             "
           >
-            {/* CONTENT WRAPPER */}
+            {/* CONTAINER */}
             <div
               className="
                 relative
@@ -305,16 +404,16 @@ export default function RootLayout({
                 w-full
                 max-w-[1920px]
 
-                overflow-visible
-                overflow-x-hidden
+                px-4
+                sm:px-5
+                md:px-6
+                lg:px-8
+                xl:px-10
 
-                px-3
-                sm:px-4
-                md:px-5
-                lg:px-6
+                overflow-x-hidden
               "
             >
-              {/* MOBILE SAFE SPACING */}
+              {/* CONTENT */}
               <div
                 className="
                   min-w-0
@@ -337,9 +436,9 @@ export default function RootLayout({
             pointer-events-none
             fixed
             inset-0
-            z-[1]
             hidden
             lg:block
+            z-[1]
           "
         >
           <div
@@ -347,13 +446,17 @@ export default function RootLayout({
               absolute
               left-1/2
               top-1/2
-              h-[500px]
-              w-[500px]
+
+              h-[600px]
+              w-[600px]
+
               -translate-x-1/2
               -translate-y-1/2
+
               rounded-full
               bg-white/[0.03]
-              blur-[160px]
+
+              blur-[180px]
             "
           />
         </div>
@@ -364,44 +467,33 @@ export default function RootLayout({
             fixed
             bottom-0
             left-0
-            z-[1]
+
+            z-[5]
+
             h-[env(safe-area-inset-bottom)]
             w-full
+
             bg-black
           "
         />
 
-        {/* BOTTOM BLUR */}
+        {/* MOBILE BOTTOM BLUR */}
         <div
           className="
             pointer-events-none
             fixed
             bottom-0
             left-0
-            z-[2]
-            h-32
+
+            h-24
             w-full
+
             bg-gradient-to-t
             from-black
             to-transparent
+
             md:hidden
           "
-        />
-
-        {/* PREMIUM NOISE */}
-        <div
-          className="
-            pointer-events-none
-            fixed
-            inset-0
-            z-[1]
-            opacity-[0.02]
-            mix-blend-soft-light
-          "
-          style={{
-            backgroundImage:
-              "url('https://grainy-gradients.vercel.app/noise.svg')",
-          }}
         />
       </body>
     </html>

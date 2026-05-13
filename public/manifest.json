@@ -21,6 +21,7 @@
     "lifestyle"
   ],
   "prefer_related_applications": false,
+
   "screenshots": [
     {
       "src": "/screenshots/mobile-home.png",
@@ -37,50 +38,52 @@
       "label": "NextGrid desktop homepage"
     }
   ],
+
   "icons": [
     {
-      "src": "../icons/icon-48.webp",
-      "type": "image/png",
+      "src": "/icons/icon-48.webp",
       "sizes": "48x48",
-      "purpose": "any maskable"
+      "type": "image/webp",
+      "purpose": "any"
     },
     {
-      "src": "../icons/icon-72.webp",
-      "type": "image/png",
+      "src": "/icons/icon-72.webp",
       "sizes": "72x72",
-      "purpose": "any maskable"
+      "type": "image/webp",
+      "purpose": "any"
     },
     {
-      "src": "../icons/icon-96.webp",
-      "type": "image/png",
+      "src": "/icons/icon-96.webp",
       "sizes": "96x96",
-      "purpose": "any maskable"
+      "type": "image/webp",
+      "purpose": "any"
     },
     {
-      "src": "../icons/icon-128.webp",
-      "type": "image/png",
+      "src": "/icons/icon-128.webp",
       "sizes": "128x128",
-      "purpose": "any maskable"
+      "type": "image/webp",
+      "purpose": "any"
     },
     {
-      "src": "../icons/icon-192.webp",
-      "type": "image/png",
+      "src": "/icons/icon-192.webp",
       "sizes": "192x192",
+      "type": "image/webp",
       "purpose": "any maskable"
     },
     {
-      "src": "../icons/icon-256.webp",
-      "type": "image/png",
+      "src": "/icons/icon-256.webp",
       "sizes": "256x256",
-      "purpose": "any maskable"
+      "type": "image/webp",
+      "purpose": "any"
     },
     {
-      "src": "../icons/icon-512.webp",
-      "type": "image/png",
+      "src": "/icons/icon-512.webp",
       "sizes": "512x512",
+      "type": "image/webp",
       "purpose": "any maskable"
     }
   ],
+
   "shortcuts": [
     {
       "name": "Luxury Collection",
@@ -89,9 +92,9 @@
       "url": "/luxury",
       "icons": [
         {
-          "src": "/icons/icon-192x192.png",
+          "src": "/icons/icon-192.webp",
           "sizes": "192x192",
-          "type": "image/png"
+          "type": "image/webp"
         }
       ]
     },
@@ -102,9 +105,9 @@
       "url": "/wishlist",
       "icons": [
         {
-          "src": "/icons/icon-192x192.png",
+          "src": "/icons/icon-192.webp",
           "sizes": "192x192",
-          "type": "image/png"
+          "type": "image/webp"
         }
       ]
     },
@@ -115,9 +118,9 @@
       "url": "/search",
       "icons": [
         {
-          "src": "/icons/icon-192x192.png",
+          "src": "/icons/icon-192.webp",
           "sizes": "192x192",
-          "type": "image/png"
+          "type": "image/webp"
         }
       ]
     }

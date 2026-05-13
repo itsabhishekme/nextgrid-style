@@ -1,17 +1,69 @@
 @import "tailwindcss";
 
-html {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+
+  width: 100%;
+  max-width: 100%;
+
+  overflow-x: hidden;
+
+  background: #000;
+  color: white;
+
   scroll-behavior: smooth;
+
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: #0f0f0f;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
 }
 
-.gradient-text {
-  background: linear-gradient(to right, #ffffff, #999999);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* CRITICAL FIX */
+#__next,
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent fixed blur overflow */
+.blur-layer {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* iPhone Fix */
+html {
+  -webkit-text-size-adjust: 100%;
 }
