@@ -7,6 +7,9 @@ import "./globals.css";
 
 import { Poppins } from "next/font/google";
 
+/* SERVICE WORKER */
+import ServiceWorker from "@/components/ServiceWorker";
+
 /* DESKTOP COMPONENTS */
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -153,6 +156,8 @@ export default function RootLayout({
           selection:text-black
         `}
       >
+        <ServiceWorker />
+
         <MobileWrapper>
 
           <TouchFix />
