@@ -241,3 +241,42 @@ body {
     position: relative;
   }
 }
+
+/* =========================================
+   FINAL SCROLLBAR REMOVE FIX
+========================================= */
+
+html,
+body {
+  overflow-y: auto;
+  overflow-x: hidden !important;
+
+  scrollbar-width: none !important;
+
+  -ms-overflow-style: none !important;
+
+  scrollbar-gutter: unset !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none !important;
+
+  width: 0 !important;
+  height: 0 !important;
+
+  background: transparent !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+
+  width: 0 !important;
+  height: 0 !important;
+}
+
+* {
+  scrollbar-width: none !important;
+
+  -ms-overflow-style: none !important;
+}
