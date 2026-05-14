@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 
+const withPWA = require(
+  "next-pwa"
+)({
+  dest: "public",
+
+  register: true,
+
+  skipWaiting: true,
+
+  disable:
+    process.env.NODE_ENV ===
+    "development",
+});
+
 const nextConfig = {
   output: "export",
 
@@ -11,6 +25,8 @@ const nextConfig = {
 
   compress: true,
 
+  turbopack: {},
+
   images: {
     unoptimized: true,
   },
@@ -18,22 +34,13 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV ===
+      "production",
+  },
 };
 
-const withPWA = require("next-pwa")({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-});
-
-module.exports = withPWA({
-  output: "export",
-
-  images: {
-    unoptimized: true,
-  },
-
-  reactStrictMode: true,
-});
-
-module.exports = nextConfig;
+module.exports =
+  withPWA(nextConfig);
