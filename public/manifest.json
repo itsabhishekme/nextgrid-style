@@ -7,24 +7,18 @@
 
   "description": "Luxury futuristic fashion ecommerce platform powered by Next.js and Capacitor.",
 
-  "start_url": "/",
+  "start_url": "https://nextgridstyle.vercel.app/",
 
-  "scope": "/",
+  "scope": "https://nextgridstyle.vercel.app/",
 
   "scope_extensions": [
     {
       "type": "origin",
-      "origin": "https://nextgrid-style-fashion.vercel.app"
+      "origin": "https://nextgridstyle.vercel.app"
     }
   ],
 
   "display": "standalone",
-
-  "display_override": [
-    "window-controls-overlay",
-    "standalone",
-    "minimal-ui"
-  ],
 
   "background_color": "#000000",
 
@@ -47,7 +41,7 @@
   "related_applications": [
     {
       "platform": "webapp",
-      "url": "https://nextgrid-style-fashion.vercel.app/manifest.json"
+      "url": "https://nextgridstyle.vercel.app/manifest.json"
     }
   ],
 
@@ -106,19 +100,29 @@
     }
   },
 
-  "iarc_rating_id":
-    "e-2026-nextgrid",
+  "iarc_rating_id": "MZKZ",
 
   "widgets": [
     {
       "name":
         "NextGrid Widget",
 
+      "short_name":
+        "NextGrid",
+
+      "description":
+        "Fashion quick access widget",
+
       "tag":
         "nextgrid-widget",
 
+      "template":
+        "single",
+
       "ms_ac_template":
-        "widget"
+        "widget",
+
+      "data": "/"
     }
   ],
 
@@ -127,9 +131,11 @@
       "src":
         "/screenshots/mobile-home.png",
 
-      "sizes": "540x720",
+      "sizes":
+        "540x720",
 
-      "type": "image/png",
+      "type":
+        "image/png",
 
       "form_factor":
         "narrow",
@@ -142,9 +148,11 @@
       "src":
         "/screenshots/desktop-home.png",
 
-      "sizes": "1280x720",
+      "sizes":
+        "1280x720",
 
-      "type": "image/png",
+      "type":
+        "image/png",
 
       "form_factor":
         "wide",
