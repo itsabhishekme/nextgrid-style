@@ -12,177 +12,95 @@ type ResponsiveLayoutProps = {
 export default function ResponsiveLayout({
   children,
 }: ResponsiveLayoutProps) {
-  const [
-    screenWidth,
-    setScreenWidth,
-  ] = useState(0);
+  const [isMobile, setIsMobile] =
+    useState(false);
 
-  const [
-    isMobile,
-    setIsMobile,
-  ] = useState(false);
+  const [isTablet, setIsTablet] =
+    useState(false);
 
-  const [
-    isTablet,
-    setIsTablet,
-  ] = useState(false);
-
-  const [
-    isDesktop,
-    setIsDesktop,
-  ] = useState(true);
-
-  const [
-    isTouchDevice,
-    setIsTouchDevice,
-  ] = useState(false);
+  const [isDesktop, setIsDesktop] =
+    useState(true);
 
   useEffect(() => {
-    /* =========================================
-       DETECT DEVICE
-    ========================================= */
+    const detectDevice = () => {
+      const width =
+        window.innerWidth;
 
-    const detectDevice =
-      () => {
-        const width =
-          window.innerWidth;
+      /* DEVICE */
 
-        const touchDevice =
-          typeof window !==
-          "undefined" &&
-          (
-            "ontouchstart" in
-            window ||
-            navigator.maxTouchPoints >
-            0
-          );
+      setIsMobile(width < 768);
 
-        setScreenWidth(width);
-
-        setIsTouchDevice(
-          touchDevice
-        );
-
-        /* MOBILE */
-        if (width < 768) {
-          setIsMobile(true);
-
-          setIsTablet(false);
-
-          setIsDesktop(false);
-        }
-
-        /* TABLET */
-        else if (
-          width >= 768 &&
+      setIsTablet(
+        width >= 768 &&
           width < 1024
-        ) {
-          setIsMobile(false);
+      );
 
-          setIsTablet(true);
+      setIsDesktop(
+        width >= 1024
+      );
 
-          setIsDesktop(false);
-        }
+      /* ROOT CLASSES */
 
-        /* DESKTOP */
-        else {
-          setIsMobile(false);
+      document.documentElement.classList.remove(
+        "mobile-layout",
+        "tablet-layout",
+        "desktop-layout"
+      );
 
-          setIsTablet(false);
-
-          setIsDesktop(true);
-        }
-
-        /* =====================================
-           ROOT CLASSES
-        ===================================== */
-
-        document.documentElement.classList.remove(
-          "mobile-layout",
-          "tablet-layout",
+      if (width < 768) {
+        document.documentElement.classList.add(
+          "mobile-layout"
+        );
+      } else if (
+        width >= 768 &&
+        width < 1024
+      ) {
+        document.documentElement.classList.add(
+          "tablet-layout"
+        );
+      } else {
+        document.documentElement.classList.add(
           "desktop-layout"
         );
+      }
 
-        if (width < 768) {
-          document.documentElement.classList.add(
-            "mobile-layout"
-          );
-        } else if (
-          width >= 768 &&
-          width < 1024
-        ) {
-          document.documentElement.classList.add(
-            "tablet-layout"
-          );
-        } else {
-          document.documentElement.classList.add(
-            "desktop-layout"
-          );
-        }
+      /* FIX VIEWPORT */
 
-        /* =====================================
-           CSS VARIABLES
-        ===================================== */
+      const vh =
+        window.innerHeight *
+        0.01;
 
-        document.documentElement.style.setProperty(
-          "--screen-width",
-          `${width}px`
-        );
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${vh}px`
+      );
 
-        document.documentElement.style.setProperty(
-          "--screen-height",
-          `${window.innerHeight}px`
-        );
+      /* REMOVE EXTRA SCROLL */
 
-        document.documentElement.style.setProperty(
-          "--vh",
-          `${window.innerHeight *
-          0.01
-          }px`
-        );
+      document.documentElement.style.margin =
+        "0";
 
-        /* =====================================
-           BODY FIX
-        ===================================== */
+      document.documentElement.style.padding =
+        "0";
 
-        document.body.style.overflowX =
-          "hidden";
+      document.documentElement.style.overflowX =
+        "hidden";
 
-        document.body.style.overflowY =
-          "auto";
+      document.body.style.margin =
+        "0";
 
-        document.body.style.minHeight =
-          "100vh";
+      document.body.style.padding =
+        "0";
 
-        document.body.style.height =
-          "auto";
+      document.body.style.overflowX =
+        "hidden";
 
-        document.body.style.position =
-          "relative";
+      document.body.style.minHeight =
+        "100dvh";
 
-        document.body.style.setProperty(
-          "-webkit-overflow-scrolling",
-          "touch"
-        );
-
-        /* =====================================
-           TOUCH FIX
-        ===================================== */
-
-        if (touchDevice) {
-          document.body.style.touchAction =
-            "pan-y";
-
-          document.body.style.overscrollBehaviorY =
-            "contain";
-        } else {
-          document.body.style.touchAction =
-            "auto";
-
-          document.body.style.overscrollBehavior =
-            "auto";
-        }
-      };
+      document.body.style.width =
+        "100%";
+    };
 
     detectDevice();
 
@@ -196,77 +114,6 @@ export default function ResponsiveLayout({
       detectDevice
     );
 
-    /* =========================================
-       REMOVE SCROLL BLOCKERS
-    ========================================= */
-
-    const removeBadStyles =
-      () => {
-        const elements =
-          document.querySelectorAll(
-            "*"
-          );
-
-        elements.forEach(
-          (element) => {
-            const htmlElement =
-              element as HTMLElement;
-
-            const computed =
-              window.getComputedStyle(
-                htmlElement
-              );
-
-            /* FIX HIDDEN */
-            if (
-              computed.overflow ===
-              "hidden" &&
-              !htmlElement.classList.contains(
-                "modal"
-              )
-            ) {
-              htmlElement.style.overflowX =
-                "hidden";
-
-              htmlElement.style.overflowY =
-                "visible";
-            }
-
-            /* FIX 100VH */
-            if (
-              computed.height ===
-              "100vh"
-            ) {
-              htmlElement.style.height =
-                "auto";
-
-              htmlElement.style.minHeight =
-                "100vh";
-            }
-
-            /* FIX TOUCH */
-            if (
-              computed.touchAction ===
-              "none"
-            ) {
-              htmlElement.style.touchAction =
-                "auto";
-            }
-          }
-        );
-      };
-
-    removeBadStyles();
-
-    const timeout =
-      setTimeout(() => {
-        removeBadStyles();
-      }, 1200);
-
-    /* =========================================
-       CLEANUP
-    ========================================= */
-
     return () => {
       window.removeEventListener(
         "resize",
@@ -277,76 +124,46 @@ export default function ResponsiveLayout({
         "orientationchange",
         detectDevice
       );
-
-      clearTimeout(timeout);
     };
   }, []);
 
   return (
     <div
       id="responsive-layout"
-      data-mobile={
-        isMobile
-      }
-      data-tablet={
-        isTablet
-      }
-      data-desktop={
-        isDesktop
-      }
-      data-touch={
-        isTouchDevice
-      }
+      data-mobile={isMobile}
+      data-tablet={isTablet}
+      data-desktop={isDesktop}
       className="
         relative
         w-full
-
-        min-h-screen
-
+        min-h-[100dvh]
         overflow-x-hidden
-        overflow-y-visible
-
+        overflow-y-hidden
         bg-transparent
       "
       style={{
         minHeight:
           "calc(var(--vh, 1vh) * 100)",
-
-        WebkitOverflowScrolling:
-          "touch" as "touch",
-
-        touchAction:
-          isTouchDevice
-            ? "pan-y"
-            : "auto",
       }}
     >
-      {/* =====================================
-          RESPONSIVE CONTAINER
-      ===================================== */}
+      {/* MAIN CONTAINER */}
 
       <div
         className={`
           relative
           mx-auto
-
           w-full
-          min-h-screen
+          min-h-[100dvh]
+          overflow-hidden
 
-          overflow-visible
-
-          transition-all
-          duration-300
-
-          ${isDesktop
-            ? "max-w-[1920px]"
-            : "max-w-full"
+          ${
+            isDesktop
+              ? "max-w-[1920px]"
+              : "max-w-full"
           }
         `}
       >
-        {/* =================================
-            MOBILE OVERLAY
-        ================================= */}
+        {/* MOBILE LIGHT */}
 
         {isMobile && (
           <div
@@ -355,55 +172,48 @@ export default function ResponsiveLayout({
               fixed
               inset-0
               z-[1]
-
               overflow-hidden
             "
           >
-            {/* TOP LIGHT */}
             <div
               className="
                 absolute
                 left-1/2
-                top-[-140px]
+                top-[-120px]
 
-                h-[260px]
-                w-[260px]
+                h-[220px]
+                w-[220px]
 
                 -translate-x-1/2
 
                 rounded-full
-
                 bg-pink-500/10
 
-                blur-[120px]
+                blur-[100px]
               "
             />
 
-            {/* BOTTOM LIGHT */}
             <div
               className="
                 absolute
-                bottom-[-140px]
+                bottom-[-120px]
                 left-1/2
 
-                h-[260px]
-                w-[260px]
+                h-[220px]
+                w-[220px]
 
                 -translate-x-1/2
 
                 rounded-full
-
                 bg-violet-500/10
 
-                blur-[120px]
+                blur-[100px]
               "
             />
           </div>
         )}
 
-        {/* =================================
-            TABLET OVERLAY
-        ================================= */}
+        {/* TABLET LIGHT */}
 
         {isTablet && (
           <div
@@ -412,118 +222,40 @@ export default function ResponsiveLayout({
               fixed
               inset-0
               z-[1]
-
               overflow-hidden
             "
           >
             <div
               className="
                 absolute
-                right-[-120px]
+                right-[-100px]
                 top-[15%]
 
-                h-[320px]
-                w-[320px]
+                h-[280px]
+                w-[280px]
 
                 rounded-full
-
                 bg-cyan-500/10
 
-                blur-[140px]
+                blur-[120px]
               "
             />
           </div>
         )}
 
-        {/* =================================
-            CONTENT
-        ================================= */}
+        {/* PAGE CONTENT */}
 
-        <div
+        <main
           className="
             relative
             z-[2]
-
             w-full
-            min-h-screen
-
-            overflow-visible
+            min-h-[100dvh]
+            overflow-hidden
           "
         >
           {children}
-        </div>
-
-        {/* =================================
-            SAFE AREA
-        ================================= */}
-
-        <div
-          className="
-            fixed
-            bottom-0
-            left-0
-            z-[10]
-
-            w-full
-
-            pointer-events-none
-          "
-          style={{
-            height:
-              "env(safe-area-inset-bottom)",
-
-            background:
-              "rgba(0,0,0,0.7)",
-
-            backdropFilter:
-              "blur(12px)",
-          }}
-        />
-      </div>
-
-      {/* =====================================
-          DEBUG INDICATOR
-      ===================================== */}
-
-      <div
-        className="
-          pointer-events-none
-          fixed
-          bottom-4
-          right-4
-          z-[9999]
-
-          hidden
-          md:flex
-
-          items-center
-          gap-2
-
-          rounded-full
-
-          border
-          border-white/10
-
-          bg-black/60
-          px-3
-          py-2
-
-          text-[10px]
-          font-medium
-          uppercase
-          tracking-[0.2em]
-          text-white/60
-
-          backdrop-blur-xl
-        "
-      >
-        <span>
-
-        </span>
-
-        <span>
-
-        </span>
+        </main>
       </div>
     </div>
   );
