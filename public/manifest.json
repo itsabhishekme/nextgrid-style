@@ -3,25 +3,21 @@
   "short_name": "NextGrid Style",
   "start_url": "/",
   "scope": "/",
-  "display": "standalone",
   "display_override": [
-    "window-controls-overlay",
-    "standalone",
-    "minimal-ui"
+    "window-controls-overlay"
   ],
+  "display": "standalone",
   "description": "NextGrid Style is a modern web experience with PWA support, widgets, shortcuts, side panel integration, and advanced installable app capabilities.",
   "lang": "en",
   "dir": "auto",
   "theme_color": "#000000",
   "background_color": "#000000",
   "orientation": "any",
-
   "categories": [
     "productivity",
     "developer",
     "utilities"
   ],
-
   "icons": [
     {
       "src": "https://nextgridstyle.vercel.app/icons/icon-72x72.png",
@@ -66,7 +62,6 @@
       "purpose": "any maskable"
     }
   ],
-
   "screenshots": [
     {
       "src": "https://nextgridstyle.vercel.app/screenshots/home-desktop.png",
@@ -83,7 +78,6 @@
       "label": "NextGrid Style Mobile Home"
     }
   ],
-
   "shortcuts": [
     {
       "name": "Dashboard",
@@ -125,33 +119,38 @@
       ]
     }
   ],
-
   "file_handlers": [
     {
       "action": "/open-file",
       "accept": {
-        "text/plain": [".txt"],
-        "application/json": [".json"],
-        "image/png": [".png"],
-        "image/jpeg": [".jpg", ".jpeg"]
+        "text/plain": [
+          ".txt"
+        ],
+        "application/json": [
+          ".json"
+        ],
+        "image/png": [
+          ".png"
+        ],
+        "image/jpeg": [
+          ".jpg",
+          ".jpeg"
+        ]
       }
     }
   ],
-
   "launch_handler": {
     "client_mode": [
       "focus-existing",
       "auto"
     ]
   },
-
   "protocol_handlers": [
     {
       "protocol": "web+nextgrid",
       "url": "/protocol?url=%s"
     }
   ],
-
   "share_target": {
     "action": "/share",
     "method": "POST",
@@ -172,7 +171,6 @@
       ]
     }
   },
-
   "widgets": [
     {
       "name": "NextGrid Widget",
@@ -190,15 +188,12 @@
       ]
     }
   ],
-
   "edge_side_panel": {
     "preferred_width": 420
   },
-
   "window_controls_overlay": {
     "enabled": true
   },
-
   "tab_strip": {
     "new_tab_button": {
       "url": "/new-tab"
@@ -207,7 +202,6 @@
       "url": "/"
     }
   },
-
   "related_applications": [
     {
       "platform": "webapp",
@@ -218,6 +212,5 @@
       "url": "https://nextgridstyle.vercel.app"
     }
   ],
-
   "prefer_related_applications": false
 }
