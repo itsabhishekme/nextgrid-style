@@ -1,12 +1,15 @@
 {
+  "id": "/",
   "name": "NextGrid Style",
   "short_name": "NextGrid",
+
   "description": "Luxury futuristic fashion ecommerce platform powered by Next.js and Capacitor.",
 
-  "start_url": "/?source=pwa",
+  "start_url": "/",
   "scope": "/",
 
   "display": "standalone",
+
   "background_color": "#000000",
   "theme_color": "#000000",
 
@@ -44,14 +47,14 @@
       "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "NextGrid mobile homepage"
+      "label": "Mobile homepage"
     },
     {
       "src": "/screenshots/desktop-home.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "NextGrid desktop homepage"
+      "label": "Desktop homepage"
     }
   ],
 
@@ -59,7 +62,6 @@
     {
       "name": "Luxury Collection",
       "short_name": "Luxury",
-      "description": "Explore luxury fashion collection",
       "url": "/luxury",
       "icons": [
         {
@@ -72,7 +74,6 @@
     {
       "name": "Wishlist",
       "short_name": "Wishlist",
-      "description": "View your wishlist",
       "url": "/wishlist",
       "icons": [
         {
@@ -83,9 +84,8 @@
       ]
     },
     {
-      "name": "Search Fashion",
+      "name": "Search",
       "short_name": "Search",
-      "description": "Search latest fashion products",
       "url": "/search",
       "icons": [
         {
@@ -95,16 +95,5 @@
         }
       ]
     }
-  ],
-
-  "share_target": {
-    "action": "/share",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  }
+  ]
 }
