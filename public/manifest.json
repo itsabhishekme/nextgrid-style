@@ -1,20 +1,12 @@
 {
-  "id": "https://nextgridstyle.vercel.app/",
   "name": "NextGrid Style",
-  "short_name": "NextGrid Style",
-
+  "short_name": "NextGrid",
   "description": "Luxury futuristic fashion ecommerce platform powered by Next.js and Capacitor.",
 
-  "start_url": "https://nextgridstyle.vercel.app/?source=pwa",
-
-  "scope": "https://nextgridstyle.vercel.app/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
 
   "display": "standalone",
-
-  "display_override": [
-    "window-controls-overlay"
-  ],
-
   "background_color": "#000000",
   "theme_color": "#000000",
 
@@ -31,69 +23,35 @@
 
   "prefer_related_applications": false,
 
-  "launch_handler": {
-    "client_mode": "focus-existing"
-  },
-
-  "protocol_handlers": [
+  "icons": [
     {
-      "protocol": "web+nextgrid",
-      "url": "https://nextgridstyle.vercel.app/?url=%s"
+      "src": "/icons/manifest-icon-192.maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
 
-  "share_target": {
-    "action": "https://nextgridstyle.vercel.app/share",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
-    }
-  },
-
   "screenshots": [
     {
-      "src": "https://nextgridstyle.vercel.app/screenshots/mobile-home.png",
+      "src": "/screenshots/mobile-home.png",
       "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "NextGrid mobile homepage"
     },
     {
-      "src": "https://nextgridstyle.vercel.app/screenshots/desktop-home.png",
+      "src": "/screenshots/desktop-home.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
       "label": "NextGrid desktop homepage"
-    }
-  ],
-
-  "icons": [
-    {
-      "src": "https://nextgridstyle.vercel.app/icons/manifest-icon-192.maskable.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "https://nextgridstyle.vercel.app/icons/manifest-icon-192.maskable.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "https://nextgridstyle.vercel.app/icons/manifest-icon-512.maskable.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "https://nextgridstyle.vercel.app/icons/manifest-icon-512.maskable.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ],
 
@@ -102,10 +60,10 @@
       "name": "Luxury Collection",
       "short_name": "Luxury",
       "description": "Explore luxury fashion collection",
-      "url": "https://nextgridstyle.vercel.app/luxury",
+      "url": "/luxury",
       "icons": [
         {
-          "src": "https://nextgridstyle.vercel.app/icons/manifest-icon-192.maskable.png",
+          "src": "/icons/manifest-icon-192.maskable.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -115,10 +73,10 @@
       "name": "Wishlist",
       "short_name": "Wishlist",
       "description": "View your wishlist",
-      "url": "https://nextgridstyle.vercel.app/wishlist",
+      "url": "/wishlist",
       "icons": [
         {
-          "src": "https://nextgridstyle.vercel.app/icons/manifest-icon-192.maskable.png",
+          "src": "/icons/manifest-icon-192.maskable.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -128,14 +86,25 @@
       "name": "Search Fashion",
       "short_name": "Search",
       "description": "Search latest fashion products",
-      "url": "https://nextgridstyle.vercel.app/search",
+      "url": "/search",
       "icons": [
         {
-          "src": "https://nextgridstyle.vercel.app/icons/manifest-icon-192.maskable.png",
+          "src": "/icons/manifest-icon-192.maskable.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
     }
-  ]
+  ],
+
+  "share_target": {
+    "action": "/share",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }
